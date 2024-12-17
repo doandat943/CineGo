@@ -49,8 +49,8 @@ dependencies {
     implementation(libs.firebase.database)
 
 
-    implementation ("com.github.bumptech.glide:glide:4.12.0")
-    implementation ("com.github.ismaeldivita:chip-navigation-bar:1.4.0")
-    implementation ("com.github.Dimezis:BlurView:version-2.0.3")
+    implementation (libs.glide)
+    implementation (libs.chip.navigation.bar)
+    implementation (libs.blurview)
     implementation(libs.androidx.activity)
 }
