@@ -15,7 +15,7 @@ import com.joverse.cinego.Adapter.CastListAdapter
 import com.joverse.cinego.Adapter.CategoryEachFilmAdapter
 import com.joverse.cinego.Models.Film
 import com.joverse.cinego.databinding.ActivityFilmDetailBinding
-import eightbitlab.com.blurview.RenderScriptBlur
+import eightbitlab.com.blurview.RenderEffectBlur
 
 class FilmDetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFilmDetailBinding
@@ -63,7 +63,7 @@ class FilmDetailActivity : AppCompatActivity() {
         val rootView = decorView.findViewById<ViewGroup>(android.R.id.content)
         val windowsBackground = decorView.background
 
-        binding.blurView.setupWith(rootView, RenderScriptBlur(this))
+        binding.blurView.setupWith(rootView, RenderEffectBlur())
             .setFrameClearDrawable(windowsBackground)
             .setBlurRadius(radius)
         binding.blurView.outlineProvider = ViewOutlineProvider.BACKGROUND
