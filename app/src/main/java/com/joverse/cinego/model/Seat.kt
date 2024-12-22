@@ -1,4 +1,4 @@
-package com.joverse.cinego.Models
+package com.joverse.cinego.model
 
 data class Seat(var status:SeatStatus,var name:String){
 

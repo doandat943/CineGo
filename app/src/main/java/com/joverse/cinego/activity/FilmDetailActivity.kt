@@ -1,4 +1,4 @@
-package com.joverse.cinego.Activity
+package com.joverse.cinego.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,9 +11,9 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.GranularRoundedCorners
 import com.bumptech.glide.request.RequestOptions
-import com.joverse.cinego.Adapter.CastListAdapter
-import com.joverse.cinego.Adapter.CategoryEachFilmAdapter
-import com.joverse.cinego.Models.Film
+import com.joverse.cinego.adapter.CastListAdapter
+import com.joverse.cinego.adapter.CategoryEachFilmAdapter
+import com.joverse.cinego.model.Film
 import com.joverse.cinego.databinding.ActivityFilmDetailBinding
 import eightbitlab.com.blurview.RenderEffectBlur
 

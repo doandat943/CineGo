@@ -1,10 +1,10 @@
-package com.joverse.cinego.Adapter
+package com.joverse.cinego.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.joverse.cinego.Models.Seat
+import com.joverse.cinego.model.Seat
 import com.joverse.cinego.R
 import com.joverse.cinego.databinding.SeatItemBinding
 

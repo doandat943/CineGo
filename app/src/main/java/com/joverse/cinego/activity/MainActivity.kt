@@ -1,4 +1,4 @@
-package com.joverse.cinego.Activity
+package com.joverse.cinego.activity
 
 import android.os.Bundle
 import android.os.Handler
@@ -15,10 +15,10 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.joverse.cinego.Adapter.FilmListAdapter
-import com.joverse.cinego.Adapter.SliderAdapter
-import com.joverse.cinego.Models.Film
-import com.joverse.cinego.Models.SliderItems
+import com.joverse.cinego.adapter.FilmListAdapter
+import com.joverse.cinego.adapter.SliderAdapter
+import com.joverse.cinego.model.Film
+import com.joverse.cinego.model.SliderItems
 import com.joverse.cinego.databinding.ActivityMainBinding
 
 

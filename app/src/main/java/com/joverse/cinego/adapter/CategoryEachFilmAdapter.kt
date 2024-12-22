@@ -1,4 +1,4 @@
-package com.joverse.cinego.Adapter
+package com.joverse.cinego.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

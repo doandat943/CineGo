@@ -1,4 +1,4 @@
-package com.joverse.cinego.Models
+package com.joverse.cinego.model
 
 import android.os.Parcel
 import android.os.Parcelable

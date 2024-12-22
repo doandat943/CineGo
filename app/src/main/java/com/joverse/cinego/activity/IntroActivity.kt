@@ -1,4 +1,4 @@
-package com.joverse.cinego.Activity
+package com.joverse.cinego.activity
 
 import android.content.Intent
 import android.os.Bundle

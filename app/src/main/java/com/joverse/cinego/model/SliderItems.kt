@@ -1,3 +1,3 @@
-package com.joverse.cinego.Models
+package com.joverse.cinego.model
 
 data class SliderItems(val image:String="")

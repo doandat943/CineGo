@@ -1,4 +1,4 @@
-package com.joverse.cinego.Activity
+package com.joverse.cinego.activity
 
 import android.icu.text.DecimalFormat
 import android.os.Bundle
@@ -6,11 +6,11 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.joverse.cinego.Adapter.DateAdapter
-import com.joverse.cinego.Adapter.SeatListAdapter
-import com.joverse.cinego.Adapter.TimeAdapter
-import com.joverse.cinego.Models.Film
-import com.joverse.cinego.Models.Seat
+import com.joverse.cinego.adapter.DateAdapter
+import com.joverse.cinego.adapter.SeatListAdapter
+import com.joverse.cinego.adapter.TimeAdapter
+import com.joverse.cinego.model.Film
+import com.joverse.cinego.model.Seat
 import com.joverse.cinego.databinding.ActivitySeatListBinding
 import java.time.LocalDate
 import java.time.LocalTime
