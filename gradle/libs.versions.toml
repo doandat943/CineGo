@@ -2,6 +2,7 @@
 agp = "8.8.0-alpha05"
 blurview = "version-2.0.3"
 chipNavigationBar = "1.4.0"
+firebaseBom = "33.7.0"
 glide = "4.13.1"
 kotlin = "2.1.0"
 coreKtx = "1.15.0"
@@ -14,13 +15,15 @@ constraintlayout = "2.2.0"
 navigationFragmentKtx = "2.8.5"
 navigationUiKtx = "2.8.5"
 googleGmsGoogleServices = "4.4.2"
-firebaseDatabase = "21.0.0"
 activity = "1.9.3"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 blurview = { module = "com.github.Dimezis:BlurView", version.ref = "blurview" }
 chip-navigation-bar = { module = "com.github.ismaeldivita:chip-navigation-bar", version.ref = "chipNavigationBar" }
+firebase-auth = { module = "com.google.firebase:firebase-auth" }
+firebase-database = { module = "com.google.firebase:firebase-database" }
+firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
@@ -30,7 +33,6 @@ material = { group = "com.google.android.material", name = "material", version.r
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
 androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }
-firebase-database = { group = "com.google.firebase", name = "firebase-database", version.ref = "firebaseDatabase" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 
 [plugins]

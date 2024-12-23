@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.joverse.cinego.databinding.ActivityIntroBinding
 
 class IntroActivity : AppCompatActivity() {
@@ -15,6 +17,12 @@ class IntroActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.startBtn.setOnClickListener {
+            val user = FirebaseAuth.getInstance().getCurrentUser()
+            if (user == null) {
+                // Chua Login
+            } else {
+                startActivity(Intent(this, MainActivity::class.java))
+            }
             startActivity(Intent(this, MainActivity::class.java))
         }
 
@@ -22,6 +30,5 @@ class IntroActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
         )
-
     }
 }
