@@ -28,7 +28,6 @@ import com.joverse.cinego.model.Film
 import com.joverse.cinego.model.SliderItems
 import com.joverse.cinego.databinding.ActivityMainBinding
 
-
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -39,21 +38,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun initUI() {
-        val imgAvatar: ImageView = findViewById(R.id.imageView2)
-        val tvName: TextView = findViewById(R.id.textView3)
-        val tvEmail: TextView = findViewById(R.id.textView4)
-        val btnSignout: ImageButton = findViewById(R.id.btnSignOut)
-
-        btnSignout.setOnClickListener {
+        binding.btnSignout.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
             startActivity(Intent(this, IntroActivity::class.java))
         }
 
-        val user:FirebaseUser = FirebaseAuth.getInstance().currentUser!!
+        val user: FirebaseUser = FirebaseAuth.getInstance().currentUser!!
         if (!user.isAnonymous) {
-            Glide.with(this).load(user.photoUrl).error(R.drawable.profile).into(imgAvatar)
-            tvName.text = user.displayName
-            tvEmail.text = user.email
+            Glide.with(this).load(user.photoUrl).error(R.drawable.profile).into(binding.imgAvatar)
+            binding.tvName.text = user.displayName
+            binding.tvEmail.text = user.email
         }
 
 
@@ -69,12 +63,15 @@ class MainActivity : AppCompatActivity() {
                     // Replace fragment or start an activity
                     Toast.makeText(this, "Home selected", Toast.LENGTH_SHORT).show()
                 }
+
                 R.id.favorites -> {
                     Toast.makeText(this, "Search selected", Toast.LENGTH_SHORT).show()
                 }
+
                 R.id.cart -> {
                     Toast.makeText(this, "Profile selected", Toast.LENGTH_SHORT).show()
                 }
+
                 R.id.profile -> {
                     Toast.makeText(this, "Profile selected", Toast.LENGTH_SHORT).show()
                 }

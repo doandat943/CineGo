@@ -2,31 +2,29 @@ package com.joverse.cinego.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.*
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.joverse.cinego.R
+import com.joverse.cinego.databinding.ActivitySignInBinding
 
 class SignInActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivitySignInBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign_in)
+        setContentView(binding.root)
         initUI()
     }
 
     fun initUI() {
-        val edtEmail: EditText = findViewById(R.id.edtEmail)
-        val edtPassword: EditText = findViewById(R.id.edtPassword)
-        val btnSignUp: ImageButton = findViewById(R.id.btnSignUp)
-        val btnSignIn: Button = findViewById(R.id.btnSignIn)
-
-        btnSignUp.setOnClickListener {
+        binding.btnSignUp.setOnClickListener {
             startActivity(Intent(this, SignUpActivity::class.java))
         }
 
-        btnSignIn.setOnClickListener {
-            val email = edtEmail.text.toString()
-            val password = edtPassword.text.toString()
+        binding.btnSignIn.setOnClickListener {
+            val email = binding.edtEmail.text.toString()
+            val password = binding.edtPassword.text.toString()
 
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->

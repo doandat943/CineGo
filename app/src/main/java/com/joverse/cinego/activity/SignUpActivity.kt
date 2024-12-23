@@ -3,37 +3,29 @@ package com.joverse.cinego.activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
 import com.google.firebase.auth.userProfileChangeRequest
-import com.joverse.cinego.R
+import com.joverse.cinego.databinding.ActivitySignUpBinding
 
 class SignUpActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivitySignUpBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign_up)
+        setContentView(binding.root)
 
         initUI()
     }
 
-
-
     fun initUI() {
-        val edtName: EditText = findViewById(R.id.edtName)
-        val edtEmail: EditText = findViewById(R.id.edtEmail)
-        val edtPassword: EditText = findViewById(R.id.edtPassword)
-        val btnSignUp: Button = findViewById(R.id.btnSignUp)
-        val btnSignIn: ImageButton = findViewById(R.id.btnSignIn)
-
-        btnSignUp.setOnClickListener {
-            val email = edtEmail.text.toString()
-            val password = edtPassword.text.toString()
+        binding.btnSignUp.setOnClickListener {
+            val email = binding.edtEmail.text.toString()
+            val password = binding.edtPassword.text.toString()
 
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
@@ -43,7 +35,7 @@ class SignUpActivity : AppCompatActivity() {
                         val user = Firebase.auth.currentUser
 
                         val profileUpdates = userProfileChangeRequest {
-                            displayName = edtName.text.toString()
+                            displayName = binding.edtName.text.toString()
                             photoUri = Uri.parse("https://example.com/jane-q-user/profile.jpg")
 
                         }
@@ -62,7 +54,7 @@ class SignUpActivity : AppCompatActivity() {
 
         }
 
-        btnSignIn.setOnClickListener {
+        binding.btnSignIn.setOnClickListener {
             startActivity(Intent(this, SignInActivity::class.java))
         }
     }
