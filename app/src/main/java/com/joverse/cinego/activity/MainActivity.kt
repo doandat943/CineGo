@@ -1,20 +1,27 @@
 package com.joverse.cinego.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import android.view.WindowManager
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
+import com.bumptech.glide.Glide
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.ismaeldivita.chipnavigation.ChipNavigationBar
+import com.joverse.cinego.R
 import com.joverse.cinego.adapter.FilmListAdapter
 import com.joverse.cinego.adapter.SliderAdapter
 import com.joverse.cinego.model.Film
@@ -31,6 +38,50 @@ class MainActivity : AppCompatActivity() {
         binding.viewPager2.currentItem = binding.viewPager2.currentItem + 1
     }
 
+    fun initUI() {
+        val imgAvatar: ImageView = findViewById(R.id.imageView2)
+        val tvName: TextView = findViewById(R.id.textView3)
+        val tvEmail: TextView = findViewById(R.id.textView4)
+        val btnSignout: ImageButton = findViewById(R.id.btnSignOut)
+
+        btnSignout.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            startActivity(Intent(this, IntroActivity::class.java))
+        }
+
+        val user:FirebaseUser = FirebaseAuth.getInstance().currentUser!!
+        if (!user.isAnonymous) {
+            Glide.with(this).load(user.photoUrl).error(R.drawable.profile).into(imgAvatar)
+            tvName.text = user.displayName
+            tvEmail.text = user.email
+        }
+
+
+        var chipNavigationBar: ChipNavigationBar = findViewById(R.id.chipNavigationBar)
+
+        // Set default selection (optional)
+        chipNavigationBar.setItemSelected(R.id.explorer, true)
+
+        // Handle item selection
+        chipNavigationBar.setOnItemSelectedListener { id ->
+            when (id) {
+                R.id.explorer -> {
+                    // Replace fragment or start an activity
+                    Toast.makeText(this, "Home selected", Toast.LENGTH_SHORT).show()
+                }
+                R.id.favorites -> {
+                    Toast.makeText(this, "Search selected", Toast.LENGTH_SHORT).show()
+                }
+                R.id.cart -> {
+                    Toast.makeText(this, "Profile selected", Toast.LENGTH_SHORT).show()
+                }
+                R.id.profile -> {
+                    Toast.makeText(this, "Profile selected", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -44,6 +95,7 @@ class MainActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
         )
 
+        initUI()
         initBanner()
         initTopMoving()
         initUpcomming()

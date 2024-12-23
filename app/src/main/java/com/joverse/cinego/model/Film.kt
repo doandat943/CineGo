@@ -26,8 +26,7 @@ data class Film(
         parcel.readDouble(),
        parcel.createStringArrayList()?:ArrayList(),
         parcel.createTypedArrayList(Cast.CREATOR)?:ArrayList()
-    ) {
-    }
+    )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(Title)

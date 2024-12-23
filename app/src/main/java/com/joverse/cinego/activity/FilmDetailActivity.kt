@@ -69,13 +69,13 @@ class FilmDetailActivity : AppCompatActivity() {
         binding.blurView.outlineProvider = ViewOutlineProvider.BACKGROUND
         binding.blurView.clipToOutline = true
 
-        item.Genre?.let {
+        item.Genre.let {
             binding.genreView.adapter = CategoryEachFilmAdapter(it)
             binding.genreView.layoutManager =
                 LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         }
 
-        item.Casts?.let {
+        item.Casts.let {
             binding.castListView.layoutManager =
                 LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
             binding.castListView.adapter = CastListAdapter(it)

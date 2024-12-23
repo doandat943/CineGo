@@ -15,14 +15,12 @@ class SeatListAdapter(
 ) : RecyclerView.Adapter<SeatListAdapter.SeatViewholder>() {
     private val selectedSeatNAme = ArrayList<String>()
 
-    class SeatViewholder(val binding: SeatItemBinding) : RecyclerView.ViewHolder(binding.root) {
-
-    }
+    class SeatViewholder(val binding: SeatItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): SeatListAdapter.SeatViewholder {
+    ): SeatViewholder {
         return SeatViewholder(
             SeatItemBinding.inflate(
                 LayoutInflater.from(parent.context),
@@ -32,7 +30,7 @@ class SeatListAdapter(
         )
     }
 
-    override fun onBindViewHolder(holder: SeatListAdapter.SeatViewholder, position: Int) {
+    override fun onBindViewHolder(holder: SeatViewholder, position: Int) {
        val seat=seatList[position]
         holder.binding.seat.text=seat.name
 
