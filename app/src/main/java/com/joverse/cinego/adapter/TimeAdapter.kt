@@ -12,7 +12,6 @@ class TimeAdapter(private val timeSlots: List<String>) :
     private var selectedPosition = -1
     private var lastSelectedPosition = -1
 
-
     inner class TimeViewholder(private val binding: ItemTimeBinding) :
         RecyclerView.ViewHolder(binding.root) {
 

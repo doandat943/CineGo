@@ -11,9 +11,9 @@ import com.joverse.cinego.databinding.SeatItemBinding
 class SeatListAdapter(
     private val seatList: List<Seat>,
     private val context: Context,
-    private val selectedSeat : SelectedSeat
+    private val selectedSeat: SelectedSeat
 ) : RecyclerView.Adapter<SeatListAdapter.SeatViewholder>() {
-    private val selectedSeatNAme = ArrayList<String>()
+    private val selectedSeatName = ArrayList<String>()
 
     class SeatViewholder(val binding: SeatItemBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -31,39 +31,43 @@ class SeatListAdapter(
     }
 
     override fun onBindViewHolder(holder: SeatViewholder, position: Int) {
-       val seat=seatList[position]
-        holder.binding.seat.text=seat.name
+        val seat = seatList[position]
+        holder.binding.seat.text = seat.name
 
-        when (seat.status){
-            Seat.SeatStatus.AVAILABLE->{
+        when (seat.status) {
+            Seat.SeatStatus.AVAILABLE -> {
                 holder.binding.seat.setBackgroundResource(R.drawable.ic_seat_available)
                 holder.binding.seat.setTextColor(context.getColor(R.color.white))
             }
-            Seat.SeatStatus.SELECTED->{
+
+            Seat.SeatStatus.SELECTED -> {
                 holder.binding.seat.setBackgroundResource(R.drawable.ic_seat_selected)
                 holder.binding.seat.setTextColor(context.getColor(R.color.black))
             }
-            Seat.SeatStatus.UNAVAILABLE->{
+
+            Seat.SeatStatus.UNAVAILABLE -> {
                 holder.binding.seat.setBackgroundResource(R.drawable.ic_seat_unavailable)
                 holder.binding.seat.setTextColor(context.getColor(R.color.grey))
             }
         }
         holder.binding.seat.setOnClickListener {
-            when(seat.status){
-                Seat.SeatStatus.AVAILABLE ->{
-                    seat.status=Seat.SeatStatus.SELECTED
-                    selectedSeatNAme.add(seat.name)
+            when (seat.status) {
+                Seat.SeatStatus.AVAILABLE -> {
+                    seat.status = Seat.SeatStatus.SELECTED
+                    selectedSeatName.add(seat.name)
                     notifyItemChanged(position)
                 }
-                Seat.SeatStatus.SELECTED ->{
-                    seat.status=Seat.SeatStatus.AVAILABLE
-                    selectedSeatNAme.remove(seat.name)
+
+                Seat.SeatStatus.SELECTED -> {
+                    seat.status = Seat.SeatStatus.AVAILABLE
+                    selectedSeatName.remove(seat.name)
                     notifyItemChanged(position)
                 }
-                else->{}
+
+                else -> {}
             }
-            val selected=selectedSeatNAme.joinToString (",")
-            selectedSeat.Return(selected,selectedSeatNAme.size)
+            val selected = selectedSeatName.joinToString(",")
+            selectedSeat.Return(selected, selectedSeatName.size)
         }
     }
 

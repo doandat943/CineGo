@@ -52,11 +52,11 @@ class SeatListActivity : AppCompatActivity() {
         val numberSeats = 81
 
         for (i in 0 until numberSeats) {
-            val SeatName = ""
-            val SeatStatus =
+            val seatName = ""
+            val seatStatus =
                 if (i == 2 || i == 20 || i == 33 || i == 41 || i == 50 || i == 72 || i == 73) Seat.SeatStatus.UNAVAILABLE else Seat.SeatStatus.AVAILABLE
 
-            seatList.add(Seat(SeatStatus, SeatName))
+            seatList.add(Seat(seatStatus, seatName))
         }
 
         val SeatAdapter = SeatListAdapter(seatList, this, object : SeatListAdapter.SelectedSeat {
@@ -71,7 +71,6 @@ class SeatListActivity : AppCompatActivity() {
         })
         binding.seatRecyclerview.adapter = SeatAdapter
         binding.seatRecyclerview.isNestedScrollingEnabled = false
-
 
         binding.TimeRecyclerview.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)

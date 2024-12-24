@@ -43,7 +43,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="8dp"
-                            android:text="Hello Pitter Jackson"
+                            android:text="Hello John Handwell"
                             android:textColor="@color/white"
                             android:textSize="19sp"
                             android:textStyle="bold"
@@ -55,7 +55,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
-                            android:text="pitterjackson@gmail.com"
+                            android:text="johnhandwell@gmail.com"
                             android:textColor="@color/white"
                             app:layout_constraintStart_toStartOf="@+id/tvName"
                             app:layout_constraintTop_toBottomOf="@+id/tvName"/>

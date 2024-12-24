@@ -31,7 +31,6 @@ class FilmDetailActivity : AppCompatActivity() {
         )
 
         setVariable()
-
     }
 
     private fun setVariable() {

@@ -45,16 +45,13 @@ class ExploreFragment : Fragment() {
     }
 
     private fun initUI() {
-        Toast.makeText(requireContext(), "Search selected", Toast.LENGTH_SHORT).show()
-
         binding.btnSignout.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
             startActivity(Intent(requireContext(), IntroActivity::class.java))
         }
-
-        val user: FirebaseUser = FirebaseAuth.getInstance().currentUser!!
-        if (!user.isAnonymous) {
-            Glide.with(this).load(user.photoUrl).error(R.drawable.profile).into(binding.imgAvatar)
+        val user = FirebaseAuth.getInstance().currentUser
+        if (user != null) {
+            // Glide.with(this).load(user.photoUrl).error(R.drawable.profile).into(binding.imgAvatar)
             binding.tvName.text = user.displayName
             binding.tvEmail.text = user.email
         }

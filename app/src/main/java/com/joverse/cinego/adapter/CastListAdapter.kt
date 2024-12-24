@@ -19,7 +19,6 @@ class CastListAdapter(private val cast: ArrayList<Cast>) :
                 Glide.with(it)
                     .load(cast.PicUrl)
                     .into(binding.actorImage)
-
             }
             binding.nameTxt.text = cast.Actor
         }
@@ -39,5 +38,4 @@ class CastListAdapter(private val cast: ArrayList<Cast>) :
     override fun getItemCount(): Int {
         return cast.size
     }
-
 }

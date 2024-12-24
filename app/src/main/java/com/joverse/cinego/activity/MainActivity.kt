@@ -2,13 +2,11 @@ package com.joverse.cinego.activity
 
 import android.os.Bundle
 import android.view.WindowManager
-import android.widget.*
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import com.joverse.cinego.R
 import com.joverse.cinego.databinding.ActivityMainBinding
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,11 +27,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadFragment(fragment: Fragment) {
-        // load fragment
-        val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.frame_container, fragment)
-        transaction.addToBackStack(null)
-        transaction.commit()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.frame_container, fragment)
+            //.addToBackStack(null)
+            .commit()
     }
 
     fun initUI() {
@@ -43,33 +40,29 @@ class MainActivity : AppCompatActivity() {
 
         loadFragment(ExploreFragment())
 
-
         // Handle item selection
         binding.chipNavigationBar.setOnItemSelectedListener { id ->
             when (id) {
                 R.id.explorer -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.frame_container, ExploreFragment())
-                        .commit()
+                    loadFragment(ExploreFragment())
                     Toast.makeText(this, "Home selected", Toast.LENGTH_SHORT).show()
                 }
 
                 R.id.favorites -> {
+                    loadFragment(ExploreFragment())
                     Toast.makeText(this, "Search selected", Toast.LENGTH_SHORT).show()
                 }
 
                 R.id.cart -> {
+                    loadFragment(ExploreFragment())
                     Toast.makeText(this, "Profile selected", Toast.LENGTH_SHORT).show()
                 }
 
                 R.id.profile -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.frame_container, ProfileFragment())
-                        .commit()
+                    loadFragment(ProfileFragment())
                     Toast.makeText(this, "Profile selected", Toast.LENGTH_SHORT).show()
                 }
             }
         }
     }
-
 }

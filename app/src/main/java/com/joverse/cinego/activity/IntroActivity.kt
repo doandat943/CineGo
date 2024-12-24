@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.joverse.cinego.databinding.ActivityIntroBinding
 
 class IntroActivity : AppCompatActivity() {
@@ -12,6 +13,7 @@ class IntroActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityIntroBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
