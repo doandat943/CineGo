@@ -33,7 +33,6 @@ class SliderAdapter(
                     .into(binding.imageSlide)
             }
         }
-
     }
 
     override fun onCreateViewHolder(
