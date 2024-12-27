@@ -84,7 +84,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_margin="10dp">
                                 <TextView
-                                        android:text="Password:"
+                                        android:text="Money:"
                                         android:textStyle="bold"
                                         android:textSize="20sp"
                                         android:textColor="@color/orange"
@@ -92,32 +92,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_weight="1"/>
                                 <TextView
-                                        android:text="Change"
-                                        android:textSize="20sp"
-                                        android:textAlignment="viewEnd"
-                                        android:textColor="@color/grey"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"/>
-                            </LinearLayout>
-                            <View android:layout_width="match_parent"
-                                  android:layout_height="1dp"
-                                  android:background="@color/grey" android:id="@+id/view3"/>
-                            <LinearLayout
-                                    android:orientation="horizontal"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_margin="10dp">
-                                <TextView
-                                        android:text="Mobile:"
-                                        android:textStyle="bold"
-                                        android:textSize="20sp"
-                                        android:textColor="@color/orange"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"/>
-                                <TextView
-                                        android:text="Change"
+                                        android:text="100.000$"
                                         android:textSize="20sp"
                                         android:textAlignment="viewEnd"
                                         android:textColor="@color/grey"

@@ -4,17 +4,17 @@ import android.os.Parcel
 import android.os.Parcelable
 
 data class Film(
-    var Title:String?=null,
-    var Description:String?=null,
-    var Poster:String?=null,
-    var Time:String?=null,
-    var Trailer:String?=null,
-    var Imdb:Int=0,
-    var Year:Int=0,
-    var price:Double=0.0,
-    var Genre:ArrayList<String> =ArrayList(),
-    var Casts:ArrayList<Cast> =ArrayList()
-):Parcelable {
+    var Title: String? = null,
+    var Description: String? = null,
+    var Poster: String? = null,
+    var Time: String? = null,
+    var Trailer: String? = null,
+    var Imdb: Int = 0,
+    var Year: Int = 0,
+    var Price: Double = 0.0,
+    var Genre: ArrayList<String> = ArrayList(),
+    var Casts: ArrayList<Cast> = ArrayList()
+) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readString(),
@@ -24,8 +24,8 @@ data class Film(
         parcel.readInt(),
         parcel.readInt(),
         parcel.readDouble(),
-       parcel.createStringArrayList()?:ArrayList(),
-        parcel.createTypedArrayList(Cast.CREATOR)?:ArrayList()
+        parcel.createStringArrayList() ?: ArrayList(),
+        parcel.createTypedArrayList(Cast.CREATOR) ?: ArrayList()
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -36,7 +36,7 @@ data class Film(
         parcel.writeString(Trailer)
         parcel.writeInt(Imdb)
         parcel.writeInt(Year)
-        parcel.writeDouble(price)
+        parcel.writeDouble(Price)
         parcel.writeStringList(Genre)
         parcel.writeTypedList(Casts)
     }

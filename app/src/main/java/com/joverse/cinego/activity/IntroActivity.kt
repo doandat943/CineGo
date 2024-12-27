@@ -3,9 +3,9 @@ package com.joverse.cinego.activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.joverse.cinego.databinding.ActivityIntroBinding
 
 class IntroActivity : AppCompatActivity() {
@@ -22,6 +22,9 @@ class IntroActivity : AppCompatActivity() {
             if (user == null) {
                 startActivity(Intent(this, SignInActivity::class.java))
             } else {
+                val userId = user.uid;
+
+                Toast.makeText(this, userId, Toast.LENGTH_LONG).show()
                 startActivity(Intent(this, MainActivity::class.java))
             }
         }

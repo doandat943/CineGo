@@ -81,8 +81,7 @@
                     android:id="@+id/edtName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:drawableEnd="@drawable/common_google_signin_btn_text_dark"/>
+                    android:inputType="text"/>
 
             <View android:layout_width="wrap_content"
                   android:layout_height="30dp"/>
@@ -97,8 +96,7 @@
                     android:id="@+id/edtEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress"
-                    android:drawableEnd="@drawable/common_google_signin_btn_text_dark"/>
+                    android:inputType="textEmailAddress"/>
 
             <View android:layout_width="wrap_content"
                   android:layout_height="30dp"/>
@@ -113,8 +111,7 @@
                     android:id="@+id/edtPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword"
-                    android:drawableEnd="@drawable/common_google_signin_btn_text_dark"/>
+                    android:inputType="textPassword"/>
 
             <View
                     android:layout_width="wrap_content"
@@ -133,7 +130,7 @@
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="or Login"
+                    android:text="or"
                     android:layout_gravity="center"/>
 
             <LinearLayout
@@ -145,6 +142,7 @@
                         android:id="@+id/btnSignIn"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
+                    android:background="@drawable/login_user"
                         android:layout_margin="12dp"/>
 
 

@@ -45,22 +45,18 @@ class MainActivity : AppCompatActivity() {
             when (id) {
                 R.id.explorer -> {
                     loadFragment(ExploreFragment())
-                    Toast.makeText(this, "Home selected", Toast.LENGTH_SHORT).show()
                 }
 
                 R.id.favorites -> {
                     loadFragment(ExploreFragment())
-                    Toast.makeText(this, "Search selected", Toast.LENGTH_SHORT).show()
                 }
 
                 R.id.cart -> {
                     loadFragment(ExploreFragment())
-                    Toast.makeText(this, "Profile selected", Toast.LENGTH_SHORT).show()
                 }
 
                 R.id.profile -> {
                     loadFragment(ProfileFragment())
-                    Toast.makeText(this, "Profile selected", Toast.LENGTH_SHORT).show()
                 }
             }
         }

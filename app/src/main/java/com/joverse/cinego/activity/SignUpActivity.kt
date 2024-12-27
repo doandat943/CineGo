@@ -39,7 +39,6 @@ class SignUpActivity : AppCompatActivity() {
                         val profileUpdates = userProfileChangeRequest {
                             displayName = binding.edtName.text.toString()
                             photoUri = Uri.parse("https://example.com/jane-q-user/profile.jpg")
-
                         }
 
                         user!!.updateProfile(profileUpdates)

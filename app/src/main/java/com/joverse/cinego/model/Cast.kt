@@ -4,9 +4,9 @@ import android.os.Parcel
 import android.os.Parcelable
 
 data class Cast(
-    var PicUrl:String?=null,
-    var Actor:String?=null
-):Parcelable {
+    var PicUrl: String? = null,
+    var Actor: String? = null
+) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readString()

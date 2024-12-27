@@ -63,7 +63,7 @@ class SeatListActivity : AppCompatActivity() {
             override fun Return(selectedName: String, num: Int) {
                 binding.numberSelectedTxt.text = "$num Seat Selected"
                 val df = DecimalFormat("#.##")
-                price = df.format(num * film.price).toDouble()
+                price = df.format(num * film.Price).toDouble()
                 number = num
                 binding.priceTxt.text = "$$price"
             }
