@@ -92,6 +92,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_weight="1"/>
                                 <TextView
+                                        android:id="@+id/tvMoney"
                                         android:text="100.000$"
                                         android:textSize="20sp"
                                         android:textAlignment="viewEnd"
@@ -123,7 +124,7 @@
                                             app:backgroundTint="@color/orange"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:id="@+id/button4"
+                                            android:id="@+id/btnNap1"
                                             android:layout_weight="1"
                                             android:layout_margin="10dp"/>
                                     <Button
@@ -131,7 +132,7 @@
                                             app:backgroundTint="@color/orange"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:id="@+id/button2"
+                                            android:id="@+id/btnNap2"
                                             android:layout_weight="1"
                                             android:layout_margin="10dp"/>
                                 </LinearLayout>

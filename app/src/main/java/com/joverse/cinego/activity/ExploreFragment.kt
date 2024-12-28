@@ -51,6 +51,7 @@ class ExploreFragment : Fragment() {
             // Glide.with(this).load(user.photoUrl).error(R.drawable.profile).into(binding.imgAvatar)
             binding.tvName.text = user.displayName
             binding.tvEmail.text = user.email
+            binding.edtSearch.setText(user.uid)
         }
     }
 

@@ -113,7 +113,7 @@
                     android:layout_marginStart="8dp"
                     android:textColor="@color/white"
                     android:textSize="12sp"
-                    android:text="Available" />
+                    android:text="Chưa được đặt" />
                 <View
 
                     android:layout_width="10dp"
@@ -128,7 +128,7 @@
                     android:layout_marginStart="8dp"
                     android:textColor="@color/white"
                     android:textSize="12sp"
-                    android:text="Selected" />
+                    android:text="Đã chọn" />
                 <View
 
                     android:layout_width="10dp"
@@ -143,7 +143,7 @@
                     android:layout_marginStart="8dp"
                     android:textColor="@color/white"
                     android:textSize="12sp"
-                    android:text="unavailable" />
+                    android:text="Đã đặt" />
             </LinearLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -171,7 +171,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     android:background="@drawable/orange_bg"
-                    android:text="Download Ticket"
+                    android:text="Đặt vé"
                     android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

@@ -133,7 +133,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="Summery"
+                        android:text="Nội dung"
                         android:textColor="@color/white"
                         android:textStyle="bold" />
 
@@ -149,7 +149,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:text="Cast"
+                        android:text="Diễn viên"
                         android:textColor="@color/white"
                         android:textStyle="bold" />
 
@@ -169,7 +169,7 @@
                 android:layout_width="200dp"
                 android:layout_height="50dp"
                 android:background="@drawable/orange_bg"
-                android:text="Buy Ticket"
+                android:text="Đặt vé"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold"

@@ -74,7 +74,7 @@
 
 
                 <EditText
-                        android:id="@+id/editTextText"
+                        android:id="@+id/edtSearch"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_margin="16dp"
@@ -83,13 +83,12 @@
                         android:drawableEnd="@drawable/microphone"
                         android:drawablePadding="8dp"
                         android:ems="10"
-                        android:hint="Search Movies..."
+                        android:hint="Tìm kiếm..."
 
                         android:inputType="text"
                         android:padding="12dp"
                         android:textColor="@color/white"
                         android:textColorHint="@color/white"/>
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="200dp">
@@ -128,17 +127,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Top Movies"
+                            android:text="Phim đang chiếu"
                             android:textColor="@color/white"
                             android:textSize="18sp"
                             android:textStyle="bold"/>
-
-                    <TextView
-                            android:id="@+id/textView6"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="See all"
-                            android:textColor="@color/white"/>
                 </LinearLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -181,17 +173,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Upcoming Movies"
+                            android:text="Phim sắp chiếu"
                             android:textColor="@color/white"
                             android:textSize="18sp"
                             android:textStyle="bold"/>
-
-                    <TextView
-
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="See all"
-                            android:textColor="@color/white"/>
                 </LinearLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
