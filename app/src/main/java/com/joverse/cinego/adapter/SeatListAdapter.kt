@@ -49,12 +49,14 @@ class SeatListAdapter(
                 holder.binding.seat.setBackgroundResource(R.drawable.ic_seat_unavailable)
                 holder.binding.seat.setTextColor(context.getColor(R.color.grey))
             }
+
+            null -> TODO()
         }
         holder.binding.seat.setOnClickListener {
             when (seat.status) {
                 Seat.SeatStatus.AVAILABLE -> {
                     seat.status = Seat.SeatStatus.SELECTED
-                    selectedSeatName.add(seat.name)
+                    seat.name?.let { it1 -> selectedSeatName.add(it1) }
                     notifyItemChanged(position)
                 }
 

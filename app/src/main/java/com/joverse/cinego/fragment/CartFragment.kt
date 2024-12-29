@@ -1,4 +1,4 @@
-package com.joverse.cinego.activity
+package com.joverse.cinego.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

@@ -1,4 +1,4 @@
-package com.joverse.cinego.activity
+package com.joverse.cinego.fragment
 
 import android.content.Intent
 import android.os.Bundle
@@ -15,11 +15,13 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.google.firebase.database.*
+import com.joverse.cinego.activity.IntroActivity
 import com.joverse.cinego.adapter.FilmListAdapter
 import com.joverse.cinego.adapter.SliderAdapter
 import com.joverse.cinego.databinding.FragmentExploreBinding
 import com.joverse.cinego.model.Film
 import com.joverse.cinego.model.SliderItems
+import kotlin.math.abs
 
 class ExploreFragment : Fragment() {
 
@@ -139,7 +141,7 @@ class ExploreFragment : Fragment() {
 
     private val sliderHandler = Handler()
     private val sliderRunnable = Runnable {
-        binding.viewPager2.currentItem = binding.viewPager2.currentItem + 1
+        binding.viewPager2.currentItem += 1
     }
 
     override fun onPause() {
@@ -162,7 +164,7 @@ class ExploreFragment : Fragment() {
         val compositePageTransformer = CompositePageTransformer().apply {
             addTransformer(MarginPageTransformer(40))
             addTransformer { page, position ->
-                val r = 1 - Math.abs(position)
+                val r = 1 - abs(position)
                 page.scaleY = 0.85f + r * 0.15f
             }
         }

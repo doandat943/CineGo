@@ -1,23 +1,27 @@
 package com.joverse.cinego.activity
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.icu.text.DecimalFormat
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.database.FirebaseDatabase
 import com.joverse.cinego.adapter.DateAdapter
 import com.joverse.cinego.adapter.SeatListAdapter
 import com.joverse.cinego.adapter.TimeAdapter
+import com.joverse.cinego.databinding.ActivitySeatListBinding
 import com.joverse.cinego.model.Film
 import com.joverse.cinego.model.Seat
-import com.joverse.cinego.databinding.ActivitySeatListBinding
-import java.time.LocalDate
-import java.time.LocalTime
-import java.time.format.DateTimeFormatter
+import com.joverse.cinego.model.TimeSeat
+
 
 class SeatListActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySeatListBinding
+    private lateinit var database: FirebaseDatabase
     private lateinit var film: Film
     private var price: Double = 0.0
     private var number: Int = 0
@@ -35,7 +39,6 @@ class SeatListActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
         )
-
     }
 
     private fun initSeatsList() {
@@ -48,37 +51,20 @@ class SeatListActivity : AppCompatActivity() {
 
         binding.seatRecyclerview.layoutManager = gridLayoutManager
 
-        val seatList = mutableListOf<Seat>()
-        val numberSeats = 81
-
-        for (i in 0 until numberSeats) {
-            val seatName = ""
-            val seatStatus =
-                if (i == 2 || i == 20 || i == 33 || i == 41 || i == 50 || i == 72 || i == 73) Seat.SeatStatus.UNAVAILABLE else Seat.SeatStatus.AVAILABLE
-
-            seatList.add(Seat(seatStatus, seatName))
+        val dates = generateDates()
+        if (dates.isNotEmpty()) {
+            // Gọi onDateSelected() với ngày đầu tiên
+            onDateSelected(dates.first())
         }
 
-        val SeatAdapter = SeatListAdapter(seatList, this, object : SeatListAdapter.SelectedSeat {
-            override fun Return(selectedName: String, num: Int) {
-                binding.numberSelectedTxt.text = "$num Seat Selected"
-                val df = DecimalFormat("#.##")
-                price = df.format(num * film.Price).toDouble()
-                number = num
-                binding.priceTxt.text = "$$price"
-            }
-
-        })
-        binding.seatRecyclerview.adapter = SeatAdapter
         binding.seatRecyclerview.isNestedScrollingEnabled = false
 
         binding.TimeRecyclerview.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        binding.TimeRecyclerview.adapter = TimeAdapter(generateTimeSlots())
 
         binding.dateRecyclerview.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        binding.dateRecyclerview.adapter = DateAdapter(generateDates())
+        binding.dateRecyclerview.adapter = DateAdapter(generateDates(), ::onDateSelected)
     }
 
     private fun setVariable() {
@@ -88,28 +74,68 @@ class SeatListActivity : AppCompatActivity() {
     }
 
     private fun getIntentExtra() {
-        film = intent.getParcelableExtra("film")!!
-    }
+        film = intent.getParcelableExtra("object")!!
 
-    private fun generateTimeSlots(): List<String> {
-        val timeSlots = mutableListOf<String>()
-        val formatter = DateTimeFormatter.ofPattern("hh:mm a")
-
-        for (i in 0 until 24 step 2) {
-            val time = LocalTime.of(i, 0)
-            timeSlots.add(time.format(formatter))
-        }
-        return timeSlots
+        val clipboard: ClipboardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val clip = ClipData.newPlainText("label", film.toString())
+        clipboard.setPrimaryClip(clip)
     }
 
     private fun generateDates(): List<String> {
         val dates = mutableListOf<String>()
-        val today = LocalDate.now()
-        val formatter = DateTimeFormatter.ofPattern("EEE/dd/MMM")
 
-        for (i in 0 until 7) {
-            dates.add(today.plusDays(i.toLong()).format(formatter))
+        for (shwTime in film.Showtimes) {
+            dates.add(shwTime.date.toString())
         }
         return dates
+    }
+
+    private fun onDateSelected(selectedDate: String) {
+        val selectedShowTime = film.Showtimes.find { it.date == selectedDate }
+        if (selectedShowTime != null) {
+            val availableTimeSeats = selectedShowTime.times
+            val availableTimes = availableTimeSeats.map { it.time!! }
+            binding.TimeRecyclerview.adapter = TimeAdapter(availableTimes, ::onTimeSelected)
+            updateSeatList(availableTimeSeats.first())
+        }
+    }
+
+    private fun onTimeSelected(selectedTime: String) {
+        val selectedShowTime = film.Showtimes
+            .flatMap { it.times }
+            .find { it.time == selectedTime }
+
+        if (selectedShowTime != null) {
+            updateSeatList(selectedShowTime)
+        }
+    }
+
+    private fun updateSeatList(selectedTimeSeat: TimeSeat) {
+        val seatList = mutableListOf<Seat>()
+        val unavaiableSeatList = selectedTimeSeat.seats
+        val totalSeats = 77
+        val seatsPerRow = 7
+
+        for (i in 1..totalSeats) {
+            val row = ('A' + (i - 1) / seatsPerRow)
+            val seatNumber = (i - 1) % seatsPerRow + 1
+            val seatName = "$row$seatNumber"
+            val seatStatus = if (unavaiableSeatList.any { it.name == seatName })
+                Seat.SeatStatus.UNAVAILABLE
+            else
+                Seat.SeatStatus.AVAILABLE
+            seatList.add(Seat(seatName, seatStatus))
+        }
+
+        val seatAdapter = SeatListAdapter(seatList, this, object : SeatListAdapter.SelectedSeat {
+            override fun Return(selectedName: String, num: Int) {
+                binding.numberSelectedTxt.text = "$num Seat Selected"
+                val df = DecimalFormat("#.##")
+                price = df.format(num * film.Price).toDouble()
+                number = num
+                binding.priceTxt.text = "$$price"
+            }
+        })
+        binding.seatRecyclerview.adapter = seatAdapter
     }
 }

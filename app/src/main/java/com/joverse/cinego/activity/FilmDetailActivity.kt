@@ -53,7 +53,7 @@ class FilmDetailActivity : AppCompatActivity() {
         }
         binding.buyTicketBtn.setOnClickListener {
             val intent = Intent(this, SeatListActivity::class.java)
-            intent.putExtra("film", item)
+            intent.putExtra("object", item)
             startActivity(intent)
         }
 

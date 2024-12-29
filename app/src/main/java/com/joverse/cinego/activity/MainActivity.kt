@@ -2,11 +2,12 @@ package com.joverse.cinego.activity
 
 import android.os.Bundle
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.joverse.cinego.R
 import com.joverse.cinego.databinding.ActivityMainBinding
+import com.joverse.cinego.fragment.ExploreFragment
+import com.joverse.cinego.fragment.ProfileFragment
 
 class MainActivity : AppCompatActivity() {
 

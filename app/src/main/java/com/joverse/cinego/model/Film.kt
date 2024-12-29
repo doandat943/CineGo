@@ -13,7 +13,8 @@ data class Film(
     var Year: Int = 0,
     var Price: Double = 0.0,
     var Genre: ArrayList<String> = ArrayList(),
-    var Casts: ArrayList<Cast> = ArrayList()
+    var Casts: ArrayList<Cast> = ArrayList(),
+    var Showtimes: ArrayList<Showtime> = ArrayList()
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
@@ -25,7 +26,8 @@ data class Film(
         parcel.readInt(),
         parcel.readDouble(),
         parcel.createStringArrayList() ?: ArrayList(),
-        parcel.createTypedArrayList(Cast.CREATOR) ?: ArrayList()
+        parcel.createTypedArrayList(Cast.CREATOR) ?: ArrayList(),
+        parcel.createTypedArrayList(Showtime.CREATOR) ?: ArrayList()
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -39,6 +41,7 @@ data class Film(
         parcel.writeDouble(Price)
         parcel.writeStringList(Genre)
         parcel.writeTypedList(Casts)
+        parcel.writeTypedList(Showtimes)
     }
 
     override fun describeContents(): Int {

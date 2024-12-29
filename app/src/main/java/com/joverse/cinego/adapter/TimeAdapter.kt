@@ -7,10 +7,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.joverse.cinego.R
 import com.joverse.cinego.databinding.ItemTimeBinding
 
-class TimeAdapter(private val timeSlots: List<String>) :
+class TimeAdapter(private val timeSlots: List<String>, private val onTimeSelected: (String) -> Unit) :
     RecyclerView.Adapter<TimeAdapter.TimeViewholder>() {
     private var selectedPosition = -1
     private var lastSelectedPosition = -1
+
+    init {
+        if (timeSlots.isNotEmpty()) {
+            selectedPosition = 0
+        }
+    }
 
     inner class TimeViewholder(private val binding: ItemTimeBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -42,6 +48,7 @@ class TimeAdapter(private val timeSlots: List<String>) :
                     selectedPosition = position
                     notifyItemChanged(lastSelectedPosition)
                     notifyItemChanged(selectedPosition)
+                    onTimeSelected(time)
                 }
             }
         }
@@ -58,7 +65,7 @@ class TimeAdapter(private val timeSlots: List<String>) :
     }
 
     override fun onBindViewHolder(holder: TimeAdapter.TimeViewholder, position: Int) {
-       holder.bind(timeSlots[position])
+       holder.bind(timeSlots[position].toString())
     }
 
     override fun getItemCount(): Int = timeSlots.size
