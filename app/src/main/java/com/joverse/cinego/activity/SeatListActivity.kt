@@ -16,7 +16,7 @@ import com.joverse.cinego.adapter.TimeAdapter
 import com.joverse.cinego.databinding.ActivitySeatListBinding
 import com.joverse.cinego.model.Film
 import com.joverse.cinego.model.Seat
-import com.joverse.cinego.model.TimeSeat
+import com.joverse.cinego.model.ShowTime
 
 
 class SeatListActivity : AppCompatActivity() {
@@ -84,16 +84,16 @@ class SeatListActivity : AppCompatActivity() {
     private fun generateDates(): List<String> {
         val dates = mutableListOf<String>()
 
-        for (shwTime in film.Showtimes) {
+        for (shwTime in film.showDates) {
             dates.add(shwTime.date.toString())
         }
         return dates
     }
 
     private fun onDateSelected(selectedDate: String) {
-        val selectedShowTime = film.Showtimes.find { it.date == selectedDate }
+        val selectedShowTime = film.showDates.find { it.date == selectedDate }
         if (selectedShowTime != null) {
-            val availableTimeSeats = selectedShowTime.times
+            val availableTimeSeats = selectedShowTime.showTimes
             val availableTimes = availableTimeSeats.map { it.time!! }
             binding.TimeRecyclerview.adapter = TimeAdapter(availableTimes, ::onTimeSelected)
             updateSeatList(availableTimeSeats.first())
@@ -101,8 +101,8 @@ class SeatListActivity : AppCompatActivity() {
     }
 
     private fun onTimeSelected(selectedTime: String) {
-        val selectedShowTime = film.Showtimes
-            .flatMap { it.times }
+        val selectedShowTime = film.showDates
+            .flatMap { it.showTimes }
             .find { it.time == selectedTime }
 
         if (selectedShowTime != null) {
@@ -110,9 +110,9 @@ class SeatListActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateSeatList(selectedTimeSeat: TimeSeat) {
+    private fun updateSeatList(selectedShowTime: ShowTime) {
         val seatList = mutableListOf<Seat>()
-        val unavaiableSeatList = selectedTimeSeat.seats
+        val unavaiableSeatList = selectedShowTime.seats
         val totalSeats = 77
         val seatsPerRow = 7
 
@@ -131,7 +131,7 @@ class SeatListActivity : AppCompatActivity() {
             override fun Return(selectedName: String, num: Int) {
                 binding.numberSelectedTxt.text = "$num Seat Selected"
                 val df = DecimalFormat("#.##")
-                price = df.format(num * film.Price).toDouble()
+                price = df.format(num * film.price).toDouble()
                 number = num
                 binding.priceTxt.text = "$$price"
             }

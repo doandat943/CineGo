@@ -3,29 +3,29 @@ package com.joverse.cinego.model
 import android.os.Parcel
 import android.os.Parcelable
 
-data class Showtime(
+data class ShowDate(
     val date: String? = null,
-    val times: ArrayList<TimeSeat> = ArrayList()
+    val showTimes: ArrayList<ShowTime> = ArrayList()
 ) : Parcelable {
 
-    companion object CREATOR : Parcelable.Creator<Showtime> {
-        override fun createFromParcel(parcel: Parcel): Showtime {
-            return Showtime(parcel)
+    companion object CREATOR : Parcelable.Creator<ShowDate> {
+        override fun createFromParcel(parcel: Parcel): ShowDate {
+            return ShowDate(parcel)
         }
 
-        override fun newArray(size: Int): Array<Showtime?> {
+        override fun newArray(size: Int): Array<ShowDate?> {
             return arrayOfNulls(size)
         }
     }
 
     constructor(parcel: Parcel) : this(
         parcel.readString(),
-        parcel.createTypedArrayList(TimeSeat.CREATOR) ?: ArrayList() // Sửa lỗi ở đây
+        parcel.createTypedArrayList(ShowTime.CREATOR) ?: ArrayList()
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(date)
-        parcel.writeTypedList(times)
+        parcel.writeTypedList(showTimes)
     }
 
     override fun describeContents(): Int {

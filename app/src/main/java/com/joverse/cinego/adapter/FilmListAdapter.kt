@@ -19,12 +19,12 @@ class FilmListAdapter(private val items: ArrayList<Film>) : RecyclerView.Adapter
     inner class Viewholder(private val binding: ViewholderFilmBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(film: Film) {
-            binding.nameTxt.text = film.Title
+            binding.nameTxt.text = film.title
             val requestOptions = RequestOptions()
                 .transform(CenterCrop(), RoundedCorners(30))
 
             Glide.with(context!!)
-                .load(film.Poster)
+                .load(film.poster)
                 .apply(requestOptions)
                 .into(binding.pic)
 

@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        tools:context=".activity.CartDetailActivity">
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="16dp">
+
+            <ImageView
+                    android:id="@+id/filmPic"
+                    android:layout_width="0dp"
+                    android:layout_height="600dp"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:srcCompat="@tools:sample/avatars"/>
+
+            <ImageView
+                    android:id="@+id/backBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="48dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/back_dark"/>
+
+            <eightbitlab.com.blurview.BlurView
+                    android:id="@+id/blurView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="24dp"
+                    android:background="@drawable/blur_bg"
+                    app:blurOverlayColor="#90000000"
+                    app:layout_constraintBottom_toBottomOf="@+id/filmPic"
+                    app:layout_constraintTop_toBottomOf="@+id/filmPic"
+                    tools:layout_editor_absoluteX="24dp">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingStart="16dp"
+                        android:paddingTop="16dp"
+                        android:paddingEnd="16dp"
+                        android:paddingBottom="32dp">
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                        <TextView
+                                android:id="@+id/titleTxt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="16dp"
+                                android:layout_weight="1"
+                                android:text="Ngày Xưa Có Một Chuyện Tình"
+                                android:textColor="@color/white"
+                                android:textSize="30sp"
+                                android:textStyle="bold"/>
+
+                    </LinearLayout>
+
+                    <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_marginTop="20dp"
+                            android:background="@drawable/gradient_bg"/>
+
+                    <TextView
+                            android:layout_marginTop="20dp"
+                            android:id="@+id/ticket_code"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Mã đặt vé: WQCQKDR"
+                            android:textColor="@color/white"
+                            android:textSize="24sp"
+                            android:textStyle="bold"/>
+
+                    <TextView
+                            android:layout_marginTop="10dp"
+                            android:id="@+id/time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Thời gian: 19:45 - 21:48"
+                            android:textSize="20sp"
+                            android:textColor="@color/white"/>
+
+                    <TextView
+                            android:id="@+id/date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Thứ 7, 26/10/2024"
+                            android:textSize="20sp"
+                            android:textColor="@color/white"/>
+
+                    <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_marginTop="20dp"
+                            android:background="@drawable/gradient_bg"/>
+
+                    <LinearLayout
+                            android:layout_marginTop="20dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                            <TextView
+                                    android:id="@+id/movieTimeTxt"
+                                    android:textSize="18sp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Phòng chiếu"
+                                    android:textColor="@color/white"/>
+
+                            <TextView
+                                    android:id="@+id/movieTimeTxtt"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Rạp 2"
+                                    android:textColor="@color/white"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:layout_marginStart="20dp"
+                                android:orientation="vertical">
+
+                            <TextView
+                                    android:id="@+id/imdbTxt"
+                                    android:textSize="18sp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Số vé"
+                                    android:textColor="@color/white"/>
+
+                            <TextView
+                                    android:id="@+id/imdbTxtty"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="02"
+                                    android:textColor="@color/white"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                            <TextView
+                                    android:id="@+id/imdbTxtt"
+                                    android:textSize="18sp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Ghế"
+                                    android:textColor="@color/white"/>
+
+                            <TextView
+                                    android:id="@+id/imdbTxttt"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="F12, F11"
+                                    android:textColor="@color/white"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="20dp"
+                            android:background="@drawable/gradient_bg"/>
+
+                </LinearLayout>
+
+            </eightbitlab.com.blurview.BlurView>
+
+            <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/buyTicketBtn"
+                    style="@android:style/Widget.Button"
+                    android:layout_width="200dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/orange_bg"
+                    android:text="Xuất vé"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/blurView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/blurView"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

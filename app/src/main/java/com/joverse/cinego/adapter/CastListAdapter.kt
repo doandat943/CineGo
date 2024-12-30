@@ -17,10 +17,10 @@ class CastListAdapter(private val cast: ArrayList<Cast>) :
         fun bind(cast: Cast) {
             context?.let {
                 Glide.with(it)
-                    .load(cast.PicUrl)
+                    .load(cast.picUrl)
                     .into(binding.actorImage)
             }
-            binding.nameTxt.text = cast.Actor
+            binding.nameTxt.text = cast.actor
         }
     }
 

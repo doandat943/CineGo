@@ -1,5 +1,6 @@
 package com.joverse.cinego.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
@@ -49,7 +50,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.favorites -> {
-                    loadFragment(ExploreFragment())
+                    startActivity(Intent(this, CartDetailActivity::class.java))
                 }
 
                 R.id.cart -> {

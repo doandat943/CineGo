@@ -39,14 +39,14 @@ class FilmDetailActivity : AppCompatActivity() {
             RequestOptions().transform(CenterCrop(), GranularRoundedCorners(0f, 0f, 50f, 50f))
 
         Glide.with(this)
-            .load(item.Poster)
+            .load(item.poster)
             .apply(requestOptions)
             .into(binding.filmPic)
 
-        binding.titleTxt.text = item.Title
-        binding.imdbTxt.text = "IMDB ${item.Imdb}"
-        binding.movieTimeTxt.text = "${item.Year} - ${item.Time}"
-        binding.movieSummeryTxt.text = item.Description
+        binding.titleTxt.text = item.title
+        binding.imdbTxt.text = "IMDB ${item.imdb}"
+        binding.movieTimeTxt.text = "${item.year} - ${item.duration}"
+        binding.movieSummeryTxt.text = item.description
 
         binding.backBtn.setOnClickListener {
             finish()
@@ -68,13 +68,13 @@ class FilmDetailActivity : AppCompatActivity() {
         binding.blurView.outlineProvider = ViewOutlineProvider.BACKGROUND
         binding.blurView.clipToOutline = true
 
-        item.Genre.let {
+        item.genres.let {
             binding.genreView.adapter = CategoryEachFilmAdapter(it)
             binding.genreView.layoutManager =
                 LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         }
 
-        item.Casts.let {
+        item.casts.let {
             binding.castListView.layoutManager =
                 LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
             binding.castListView.adapter = CastListAdapter(it)

@@ -49,7 +49,7 @@ class ProfileFragment : Fragment() {
             myRef.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     fbUser = dataSnapshot.getValue(User::class.java) ?: User()
-                    binding.tvMoney.text = "${fbUser!!.Money} $"
+                    binding.tvMoney.text = "${fbUser!!.balance} $"
                 }
 
                 override fun onCancelled(error: DatabaseError) {
@@ -77,7 +77,7 @@ class ProfileFragment : Fragment() {
 
     private fun updateMoney(amount: Int, myRef: DatabaseReference) {
         fbUser?.let {
-            it.Money += amount
+            it.balance += amount
             myRef.setValue(it).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Toast.makeText(requireContext(), "Đã nạp $amount", Toast.LENGTH_SHORT).show()

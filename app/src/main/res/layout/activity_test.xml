@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:padding="16dp"
+        tools:context=".activity.TestActivity">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <TextView
+                android:id="@+id/movie_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ngày Xưa Có Một Chuyện Tình"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:layout_marginTop="4dp"/>
+
+        <!-- Movie Image -->
+        <ImageView
+                android:id="@+id/movie_image"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ticket_background"
+                android:layout_marginTop="8dp"/>
+
+        <!-- Ticket Information -->
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/pink"
+                android:padding="16dp">
+
+            <TextView
+                    android:id="@+id/ticket_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mã đặt vé: WQCQKDR"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+
+            <TextView
+                    android:id="@+id/time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Thời gian: 19:45 - 21:48"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:layout_marginTop="8dp"/>
+
+            <TextView
+                    android:id="@+id/date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Thứ 7, 26/10/2024"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:layout_marginTop="4dp"/>
+
+            <TextView
+                    android:id="@+id/cinema_room"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Phòng chiếu: RAP 2"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:layout_marginTop="16dp"/>
+
+            <TextView
+                    android:id="@+id/seat_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Số vé: 02 - Ghế: F12, F11"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:layout_marginTop="4dp"/>
+
+            <!-- QR Code -->
+            <ImageView
+                    android:id="@+id/qr_code"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="16dp"
+                    android:src="@drawable/placeholder_qr"
+                    android:contentDescription="QR Code"/>
+        </LinearLayout>
+
+        <!-- Footer -->
+        <TextView
+                android:id="@+id/footer_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Đưa mã này cho nhân viên soát vé để nhận vé vào rạp"
+                android:textColor="@color/gray"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:layout_marginTop="16dp"/>
+    </LinearLayout>
+</ScrollView>

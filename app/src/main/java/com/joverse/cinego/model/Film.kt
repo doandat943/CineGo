@@ -4,17 +4,18 @@ import android.os.Parcel
 import android.os.Parcelable
 
 data class Film(
-    var Title: String? = null,
-    var Description: String? = null,
-    var Poster: String? = null,
-    var Time: String? = null,
-    var Trailer: String? = null,
-    var Imdb: Int = 0,
-    var Year: Int = 0,
-    var Price: Double = 0.0,
-    var Genre: ArrayList<String> = ArrayList(),
-    var Casts: ArrayList<Cast> = ArrayList(),
-    var Showtimes: ArrayList<Showtime> = ArrayList()
+    var title: String? = null,
+    var description: String? = null,
+    var poster: String? = null,
+    var duration: String? = null,
+    var trailer: String? = null,
+    var imdb: Int = 0,
+    var year: Int = 0,
+    var ageRating: String? = null,
+    var price: Double = 0.0,
+    var genres: ArrayList<String> = ArrayList(),
+    var casts: ArrayList<Cast> = ArrayList(),
+    var showDates: ArrayList<ShowDate> = ArrayList()
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
@@ -24,24 +25,26 @@ data class Film(
         parcel.readString(),
         parcel.readInt(),
         parcel.readInt(),
+        parcel.readString(),
         parcel.readDouble(),
         parcel.createStringArrayList() ?: ArrayList(),
         parcel.createTypedArrayList(Cast.CREATOR) ?: ArrayList(),
-        parcel.createTypedArrayList(Showtime.CREATOR) ?: ArrayList()
+        parcel.createTypedArrayList(ShowDate.CREATOR) ?: ArrayList()
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(Title)
-        parcel.writeString(Description)
-        parcel.writeString(Poster)
-        parcel.writeString(Time)
-        parcel.writeString(Trailer)
-        parcel.writeInt(Imdb)
-        parcel.writeInt(Year)
-        parcel.writeDouble(Price)
-        parcel.writeStringList(Genre)
-        parcel.writeTypedList(Casts)
-        parcel.writeTypedList(Showtimes)
+        parcel.writeString(title)
+        parcel.writeString(description)
+        parcel.writeString(poster)
+        parcel.writeString(duration)
+        parcel.writeString(trailer)
+        parcel.writeInt(imdb)
+        parcel.writeInt(year)
+        parcel.writeString(ageRating)
+        parcel.writeDouble(price)
+        parcel.writeStringList(genres)
+        parcel.writeTypedList(casts)
+        parcel.writeTypedList(showDates)
     }
 
     override fun describeContents(): Int {

@@ -12,10 +12,9 @@ data class Seat(
         AVAILABLE, SELECTED, UNAVAILABLE
     }
 
-    // Constructor để khôi phục đối tượng từ Parcel
     constructor(parcel: Parcel) : this(
         parcel.readString(),
-        parcel.readSerializable() as? SeatStatus // Đọc SeatStatus từ Parcel
+        parcel.readSerializable() as? SeatStatus
     )
 
     override fun describeContents(): Int {
@@ -23,11 +22,10 @@ data class Seat(
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(name) // Ghi name vào Parcel
-        parcel.writeSerializable(status) // Ghi status vào Parcel
+        parcel.writeString(name)
+        parcel.writeSerializable(status)
     }
 
-    // Định nghĩa CREATOR để tạo đối tượng từ Parcel
     companion object CREATOR : Parcelable.Creator<Seat> {
         override fun createFromParcel(parcel: Parcel): Seat {
             return Seat(parcel)
