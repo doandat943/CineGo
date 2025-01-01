@@ -84,7 +84,6 @@ class ProfileFragment : Fragment() {
                     Toast.makeText(requireContext(), "Lỗi khi nạp tiền", Toast.LENGTH_SHORT).show()
                 }
             }
-        } ?: Toast.makeText(requireContext(), "Dữ liệu người dùng chưa sẵn sàng", Toast.LENGTH_SHORT).show()
+        }
     }
-
 }

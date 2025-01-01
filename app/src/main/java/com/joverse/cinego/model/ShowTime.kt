@@ -14,14 +14,14 @@ data class ShowTime(
         parcel.createTypedArrayList(Seat.CREATOR) ?: ArrayList()
     )
 
-    override fun describeContents(): Int {
-        return 0
-    }
-
     override fun writeToParcel(dest: Parcel, flags: Int) {
         dest.writeString(theater)
         dest.writeString(time)
         dest.writeTypedList(seats)
+    }
+
+    override fun describeContents(): Int {
+        return 0
     }
 
     companion object CREATOR : Parcelable.Creator<ShowTime> {

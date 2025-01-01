@@ -3,33 +3,39 @@ package com.joverse.cinego.activity
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
-import android.icu.text.DecimalFormat
 import android.os.Bundle
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 import com.joverse.cinego.adapter.DateAdapter
 import com.joverse.cinego.adapter.SeatListAdapter
 import com.joverse.cinego.adapter.TimeAdapter
 import com.joverse.cinego.databinding.ActivitySeatListBinding
-import com.joverse.cinego.model.Movie
-import com.joverse.cinego.model.Seat
-import com.joverse.cinego.model.ShowTime
+import com.joverse.cinego.model.*
+import com.joverse.cinego.utils.generateRandomCode
 
 
 class SeatListActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySeatListBinding
     private lateinit var database: FirebaseDatabase
+    private var fbUser: User? = null
+
     private lateinit var movie: Movie
-    private var price: Double = 0.0
-    private var number: Int = 0
+    private var theater: String? = null
+    private var date: String? = null
+    private var time: String? = null
+    private var totalAmount: Int = 0
+    private var selectedSeatList: ArrayList<String> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivitySeatListBinding.inflate(layoutInflater)
+        database = FirebaseDatabase.getInstance()
         setContentView(binding.root)
 
         getIntentExtra()
@@ -50,34 +56,79 @@ class SeatListActivity : AppCompatActivity() {
             }
         }
 
-        binding.seatRecyclerview.layoutManager = gridLayoutManager
-
         val dates = generateDates()
         if (dates.isNotEmpty()) {
             onDateSelected(dates.first())
         }
 
+        binding.seatRecyclerview.layoutManager = gridLayoutManager
         binding.seatRecyclerview.isNestedScrollingEnabled = false
 
-        binding.TimeRecyclerview.layoutManager =
-            LinearLayoutManager(
-                this,
-                LinearLayoutManager.HORIZONTAL,
-                false
-            )
+        binding.TimeRecyclerview.layoutManager = LinearLayoutManager(
+            this,
+            LinearLayoutManager.HORIZONTAL,
+            false
+        )
 
-        binding.dateRecyclerview.layoutManager =
-            LinearLayoutManager(
-                this,
-                LinearLayoutManager.HORIZONTAL,
-                false
-            )
+        binding.dateRecyclerview.layoutManager = LinearLayoutManager(
+            this,
+            LinearLayoutManager.HORIZONTAL,
+            false
+        )
         binding.dateRecyclerview.adapter = DateAdapter(generateDates(), ::onDateSelected)
     }
 
     private fun setVariable() {
         binding.backBtn.setOnClickListener {
             finish()
+        }
+        binding.button.setOnClickListener {
+            bookTicket()
+        }
+    }
+
+    private fun bookTicket() {
+        val ticket: Ticket = Ticket(
+            generateRandomCode(),
+            Ticket.TicketStatus.AVAILABLE,
+            movie.title,
+            movie.poster,
+            theater,
+            date,
+            time,
+            movie.duration,
+            totalAmount,
+            selectedSeatList
+        )
+        val user = FirebaseAuth.getInstance().currentUser
+
+        if (user != null) {
+
+            val myRef: DatabaseReference = database.getReference("Users").child(user.uid)
+
+            myRef.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    fbUser = dataSnapshot.getValue(User::class.java) ?: User()
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                }
+            })
+
+            fbUser.let {
+                if (it != null) {
+                    it.balance -= totalAmount
+                    it.tickets += ticket
+
+                    myRef.setValue(it).addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            Toast.makeText(this, "Đã đặt vé thành công", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(this, "Đã có lỗi xảy ra", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -99,21 +150,27 @@ class SeatListActivity : AppCompatActivity() {
     }
 
     private fun onDateSelected(selectedDate: String) {
+        date = selectedDate
+
         val selectedShowTime = movie.showDates.find { it.date == selectedDate }
         if (selectedShowTime != null) {
             val availableTimeSeats = selectedShowTime.showTimes
             val availableTimes = availableTimeSeats.map { it.time!! }
             binding.TimeRecyclerview.adapter = TimeAdapter(availableTimes, ::onTimeSelected)
-            updateSeatList(availableTimeSeats.first())
+            availableTimeSeats.first().time?.let { onTimeSelected(it) }
         }
     }
 
     private fun onTimeSelected(selectedTime: String) {
+        time = selectedTime
+
         val selectedShowTime = movie.showDates
             .flatMap { it.showTimes }
             .find { it.time == selectedTime }
 
         if (selectedShowTime != null) {
+            Toast.makeText(this, "${selectedShowTime.theater}", Toast.LENGTH_SHORT).show()
+            theater = selectedShowTime.theater
             updateSeatList(selectedShowTime)
         }
     }
@@ -136,12 +193,12 @@ class SeatListActivity : AppCompatActivity() {
         }
 
         val seatAdapter = SeatListAdapter(seatList, this, object : SeatListAdapter.SelectedSeat {
-            override fun Return(selectedName: String, num: Int) {
-                binding.numberSelectedTxt.text = "$num Seat Selected"
-                val df = DecimalFormat("#.##")
-                price = df.format(num * movie.price).toDouble()
-                number = num
-                binding.priceTxt.text = "$$price"
+            override fun Return(selectedSeatName: ArrayList<String>) {
+                totalAmount = selectedSeatName.size * movie.price
+                selectedSeatList = selectedSeatName
+
+                binding.numberSelectedTxt.text = "${selectedSeatName.size} Seat Selected"
+                binding.priceTxt.text = "$$totalAmount"
             }
         })
         binding.seatRecyclerview.adapter = seatAdapter

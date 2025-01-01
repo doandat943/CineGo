@@ -11,6 +11,8 @@ import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 import java.time.format.TextStyle
 import java.util.*
+import kotlin.random.Random
+
 
 fun addDurationToTime(time: String?, duration: Int): String {
     val localTime = LocalTime.parse(time)
@@ -45,4 +47,16 @@ fun generateQRCode(data: String, imageView: ImageView) {
     } catch (e: WriterException) {
         e.printStackTrace()
     }
+}
+
+fun generateRandomCode(): String {
+    val characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+    val randomCode = StringBuilder()
+
+    for (i in 1..8) {
+        val randomChar = characters[Random.nextInt(characters.length)]
+        randomCode.append(randomChar)
+    }
+
+    return randomCode.toString().uppercase()
 }

@@ -13,7 +13,6 @@ class SeatListAdapter(
     private val context: Context,
     private val selectedSeat: SelectedSeat
 ) : RecyclerView.Adapter<SeatListAdapter.SeatViewHolder>() {
-
     private val selectedSeatName = ArrayList<String>()
 
     class SeatViewHolder(
@@ -71,14 +70,13 @@ class SeatListAdapter(
 
                 else -> {}
             }
-            val selected = selectedSeatName.joinToString(",")
-            selectedSeat.Return(selected, selectedSeatName.size)
+            selectedSeat.Return(selectedSeatName)
         }
     }
 
     override fun getItemCount(): Int = seatList.size
 
     interface SelectedSeat {
-        fun Return(selectedName: String, num: Int)
+        fun Return(selectedSeatName: ArrayList<String>)
     }
 }

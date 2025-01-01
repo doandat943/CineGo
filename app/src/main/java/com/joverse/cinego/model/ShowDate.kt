@@ -8,16 +8,6 @@ data class ShowDate(
     val showTimes: ArrayList<ShowTime> = ArrayList()
 ) : Parcelable {
 
-    companion object CREATOR : Parcelable.Creator<ShowDate> {
-        override fun createFromParcel(parcel: Parcel): ShowDate {
-            return ShowDate(parcel)
-        }
-
-        override fun newArray(size: Int): Array<ShowDate?> {
-            return arrayOfNulls(size)
-        }
-    }
-
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.createTypedArrayList(ShowTime.CREATOR) ?: ArrayList()
@@ -30,5 +20,15 @@ data class ShowDate(
 
     override fun describeContents(): Int {
         return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<ShowDate> {
+        override fun createFromParcel(parcel: Parcel): ShowDate {
+            return ShowDate(parcel)
+        }
+
+        override fun newArray(size: Int): Array<ShowDate?> {
+            return arrayOfNulls(size)
+        }
     }
 }
