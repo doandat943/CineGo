@@ -3,6 +3,7 @@ package com.joverse.cinego.activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.Firebase
@@ -12,7 +13,6 @@ import com.google.firebase.auth.userProfileChangeRequest
 import com.joverse.cinego.databinding.ActivitySignUpBinding
 
 class SignUpActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivitySignUpBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,6 +22,11 @@ class SignUpActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initUI()
+
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+        )
     }
 
     fun initUI() {

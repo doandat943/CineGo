@@ -14,7 +14,7 @@ import com.joverse.cinego.adapter.DateAdapter
 import com.joverse.cinego.adapter.SeatListAdapter
 import com.joverse.cinego.adapter.TimeAdapter
 import com.joverse.cinego.databinding.ActivitySeatListBinding
-import com.joverse.cinego.model.Film
+import com.joverse.cinego.model.Movie
 import com.joverse.cinego.model.Seat
 import com.joverse.cinego.model.ShowTime
 
@@ -22,12 +22,13 @@ import com.joverse.cinego.model.ShowTime
 class SeatListActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySeatListBinding
     private lateinit var database: FirebaseDatabase
-    private lateinit var film: Film
+    private lateinit var movie: Movie
     private var price: Double = 0.0
     private var number: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivitySeatListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -59,10 +60,18 @@ class SeatListActivity : AppCompatActivity() {
         binding.seatRecyclerview.isNestedScrollingEnabled = false
 
         binding.TimeRecyclerview.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+            LinearLayoutManager(
+                this,
+                LinearLayoutManager.HORIZONTAL,
+                false
+            )
 
         binding.dateRecyclerview.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+            LinearLayoutManager(
+                this,
+                LinearLayoutManager.HORIZONTAL,
+                false
+            )
         binding.dateRecyclerview.adapter = DateAdapter(generateDates(), ::onDateSelected)
     }
 
@@ -73,24 +82,24 @@ class SeatListActivity : AppCompatActivity() {
     }
 
     private fun getIntentExtra() {
-        film = intent.getParcelableExtra("object")!!
+        movie = intent.getParcelableExtra("object")!!
 
         val clipboard: ClipboardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-        val clip = ClipData.newPlainText("label", film.toString())
+        val clip = ClipData.newPlainText("label", movie.toString())
         clipboard.setPrimaryClip(clip)
     }
 
     private fun generateDates(): List<String> {
         val dates = mutableListOf<String>()
 
-        for (shwTime in film.showDates) {
+        for (shwTime in movie.showDates) {
             dates.add(shwTime.date.toString())
         }
         return dates
     }
 
     private fun onDateSelected(selectedDate: String) {
-        val selectedShowTime = film.showDates.find { it.date == selectedDate }
+        val selectedShowTime = movie.showDates.find { it.date == selectedDate }
         if (selectedShowTime != null) {
             val availableTimeSeats = selectedShowTime.showTimes
             val availableTimes = availableTimeSeats.map { it.time!! }
@@ -100,7 +109,7 @@ class SeatListActivity : AppCompatActivity() {
     }
 
     private fun onTimeSelected(selectedTime: String) {
-        val selectedShowTime = film.showDates
+        val selectedShowTime = movie.showDates
             .flatMap { it.showTimes }
             .find { it.time == selectedTime }
 
@@ -130,7 +139,7 @@ class SeatListActivity : AppCompatActivity() {
             override fun Return(selectedName: String, num: Int) {
                 binding.numberSelectedTxt.text = "$num Seat Selected"
                 val df = DecimalFormat("#.##")
-                price = df.format(num * film.price).toDouble()
+                price = df.format(num * movie.price).toDouble()
                 number = num
                 binding.priceTxt.text = "$$price"
             }

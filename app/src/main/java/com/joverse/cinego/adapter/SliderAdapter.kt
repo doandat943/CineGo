@@ -13,7 +13,8 @@ import com.joverse.cinego.model.SliderItem
 import com.joverse.cinego.databinding.ItemSliderBinding
 
 class SliderAdapter(
-    private var sliderItems: MutableList<SliderItem>, private val viewPager2: ViewPager2
+    private var sliderItems: MutableList<SliderItem>,
+    private val viewPager2: ViewPager2
 ) : RecyclerView.Adapter<SliderAdapter.SliderViewHolder>() {
     private var context: Context? = null
     private val runnable = Runnable {

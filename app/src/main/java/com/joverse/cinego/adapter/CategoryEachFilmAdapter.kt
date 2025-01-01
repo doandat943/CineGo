@@ -5,8 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.joverse.cinego.databinding.ItemCategoryBinding
 
-class CategoryEachFilmAdapter(private val items: List<String>) :
-    RecyclerView.Adapter<CategoryEachFilmAdapter.Viewholder>() {
+class CategoryEachFilmAdapter(
+    private val items: List<String>
+) : RecyclerView.Adapter<CategoryEachFilmAdapter.Viewholder>() {
+
     class Viewholder(val binding: ItemCategoryBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(

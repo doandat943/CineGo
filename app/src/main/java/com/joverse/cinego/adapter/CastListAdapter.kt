@@ -8,8 +8,10 @@ import com.bumptech.glide.Glide
 import com.joverse.cinego.model.Cast
 import com.joverse.cinego.databinding.ItemCastBinding
 
-class CastListAdapter(private val cast: ArrayList<Cast>) :
-    RecyclerView.Adapter<CastListAdapter.CastViewHolder>() {
+class CastListAdapter(
+    private val cast: ArrayList<Cast>
+) : RecyclerView.Adapter<CastListAdapter.CastViewHolder>() {
+
     private var context: Context? = null
 
     inner class CastViewHolder(private val binding: ItemCastBinding) :

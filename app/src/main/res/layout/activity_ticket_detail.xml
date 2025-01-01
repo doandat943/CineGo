@@ -20,7 +20,7 @@
                 android:paddingBottom="16dp">
 
             <ImageView
-                    android:id="@+id/filmPic"
+                    android:id="@+id/poster"
                     android:layout_width="0dp"
                     android:layout_height="600dp"
                     android:scaleType="centerCrop"
@@ -46,8 +46,8 @@
                     android:layout_margin="24dp"
                     android:background="@drawable/blur_bg"
                     app:blurOverlayColor="#90000000"
-                    app:layout_constraintBottom_toBottomOf="@+id/filmPic"
-                    app:layout_constraintTop_toBottomOf="@+id/filmPic"
+                    app:layout_constraintBottom_toBottomOf="@+id/poster"
+                    app:layout_constraintTop_toBottomOf="@+id/poster"
                     tools:layout_editor_absoluteX="24dp">
 
                 <LinearLayout
@@ -65,7 +65,7 @@
                             android:orientation="horizontal">
 
                         <TextView
-                                android:id="@+id/titleTxt"
+                                android:id="@+id/movie_title"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="16dp"
@@ -84,8 +84,8 @@
                             android:background="@drawable/gradient_bg"/>
 
                     <TextView
-                            android:layout_marginTop="20dp"
                             android:id="@+id/ticket_code"
+                            android:layout_marginTop="20dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Mã đặt vé: WQCQKDR"
@@ -94,8 +94,8 @@
                             android:textStyle="bold"/>
 
                     <TextView
-                            android:layout_marginTop="10dp"
                             android:id="@+id/time"
+                            android:layout_marginTop="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Thời gian: 19:45 - 21:48"
@@ -129,7 +129,6 @@
                                 android:orientation="vertical">
 
                             <TextView
-                                    android:id="@+id/movieTimeTxt"
                                     android:textSize="18sp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -137,7 +136,7 @@
                                     android:textColor="@color/white"/>
 
                             <TextView
-                                    android:id="@+id/movieTimeTxtt"
+                                    android:id="@+id/theater"
                                     android:textSize="18sp"
                                     android:textStyle="bold"
                                     android:layout_width="wrap_content"
@@ -155,7 +154,6 @@
                                 android:orientation="vertical">
 
                             <TextView
-                                    android:id="@+id/imdbTxt"
                                     android:textSize="18sp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -163,7 +161,7 @@
                                     android:textColor="@color/white"/>
 
                             <TextView
-                                    android:id="@+id/imdbTxtty"
+                                    android:id="@+id/ticketCount"
                                     android:textSize="18sp"
                                     android:textStyle="bold"
                                     android:layout_width="wrap_content"
@@ -179,7 +177,6 @@
                                 android:orientation="vertical">
 
                             <TextView
-                                    android:id="@+id/imdbTxtt"
                                     android:textSize="18sp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -187,7 +184,7 @@
                                     android:textColor="@color/white"/>
 
                             <TextView
-                                    android:id="@+id/imdbTxttt"
+                                    android:id="@+id/seats"
                                     android:textSize="18sp"
                                     android:textStyle="bold"
                                     android:layout_width="wrap_content"

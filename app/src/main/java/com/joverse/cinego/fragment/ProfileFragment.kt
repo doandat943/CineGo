@@ -45,7 +45,6 @@ class ProfileFragment : Fragment() {
 
             val myRef: DatabaseReference = database.getReference("Users").child(user.uid)
 
-            // Lấy dữ liệu User từ Firebase
             myRef.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     fbUser = dataSnapshot.getValue(User::class.java) ?: User()

@@ -9,40 +9,46 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
-import com.joverse.cinego.activity.FilmDetailActivity
-import com.joverse.cinego.model.Film
-import com.joverse.cinego.databinding.ItemFilmBinding
+import com.joverse.cinego.activity.MovieDetailActivity
+import com.joverse.cinego.model.Movie
+import com.joverse.cinego.databinding.ItemMovieBinding
 
-class FilmListAdapter(private val items: ArrayList<Film>) : RecyclerView.Adapter<FilmListAdapter.FilmViewHolder>() {
+class MovieListAdapter(
+    private val items: ArrayList<Movie>
+) : RecyclerView.Adapter<MovieListAdapter.FilmViewHolder>() {
+
     private var context: Context? = null
 
-    inner class FilmViewHolder(private val binding: ItemFilmBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class FilmViewHolder(private val binding: ItemMovieBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(film: Film) {
-            binding.nameTxt.text = film.title
+        fun bind(movie: Movie) {
+            binding.nameTxt.text = movie.title
             val requestOptions = RequestOptions()
                 .transform(CenterCrop(), RoundedCorners(30))
 
             Glide.with(context!!)
-                .load(film.poster)
+                .load(movie.poster)
                 .apply(requestOptions)
                 .into(binding.pic)
 
             binding.root.setOnClickListener {
-                val intent = Intent(context, FilmDetailActivity::class.java)
-                intent.putExtra("object", film)
+                val intent = Intent(context, MovieDetailActivity::class.java)
+                intent.putExtra("object", movie)
                 context!!.startActivity(intent)
             }
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilmListAdapter.FilmViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieListAdapter.FilmViewHolder {
         context = parent.context
-        val binding = ItemFilmBinding.inflate(LayoutInflater.from(context), parent, false)
+        val binding = ItemMovieBinding.inflate(
+            LayoutInflater.from(context),
+            parent,
+            false)
         return FilmViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: FilmListAdapter.FilmViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MovieListAdapter.FilmViewHolder, position: Int) {
         holder.bind(items[position])
     }
 

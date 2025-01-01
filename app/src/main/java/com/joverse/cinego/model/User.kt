@@ -3,6 +3,6 @@ package com.joverse.cinego.model
 data class User(
     var birthdate: String? = null,
     var balance: Int = 0,
-    var favourites: ArrayList<Film> = ArrayList(),
-    var cart: ArrayList<TicketItem> = ArrayList(),
+    var favourites: ArrayList<Movie> = ArrayList(),
+    var tickets: ArrayList<Ticket> = ArrayList(),
 )

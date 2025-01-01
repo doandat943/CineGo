@@ -9,9 +9,9 @@ import com.joverse.cinego.R
 import com.joverse.cinego.databinding.ActivityMainBinding
 import com.joverse.cinego.fragment.ExploreFragment
 import com.joverse.cinego.fragment.ProfileFragment
+import com.joverse.cinego.fragment.TicketFragment
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,12 +20,12 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        initUI()
+
         window.setFlags(
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
         )
-
-        initUI()
     }
 
     private fun loadFragment(fragment: Fragment) {
@@ -37,12 +37,9 @@ class MainActivity : AppCompatActivity() {
 
     fun initUI() {
 
-        // Set default selection (optional)
         binding.chipNavigationBar.setItemSelected(R.id.explorer, true)
-
         loadFragment(ExploreFragment())
 
-        // Handle item selection
         binding.chipNavigationBar.setOnItemSelectedListener { id ->
             when (id) {
                 R.id.explorer -> {
@@ -54,7 +51,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.ticket -> {
-                    loadFragment(ExploreFragment())
+                    loadFragment(TicketFragment())
                 }
 
                 R.id.profile -> {

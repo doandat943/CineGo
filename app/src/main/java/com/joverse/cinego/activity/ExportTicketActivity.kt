@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.ViewGroup
 import android.view.ViewOutlineProvider
 import android.view.WindowManager
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -13,17 +14,22 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.GranularRoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.joverse.cinego.R
+import com.joverse.cinego.databinding.ActivityExportTicketBinding
+import com.joverse.cinego.databinding.ActivityMovieDetailBinding
 import com.joverse.cinego.databinding.ActivityTicketDetailBinding
 import com.joverse.cinego.model.Ticket
+import com.joverse.cinego.utils.addDurationToTime
+import com.joverse.cinego.utils.formatDate
+import com.joverse.cinego.utils.generateQRCode
 import eightbitlab.com.blurview.RenderEffectBlur
 
-class TicketDetailActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityTicketDetailBinding
+class ExportTicketActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityExportTicketBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityTicketDetailBinding.inflate(layoutInflater)
+        binding = ActivityExportTicketBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setVariable()
@@ -44,33 +50,21 @@ class TicketDetailActivity : AppCompatActivity() {
             .apply(requestOptions)
             .into(binding.poster)
 
+        val endShow: String = addDurationToTime(item.time, item.duration)
+        val formatDate: String = formatDate(item.date)
+
+        generateQRCode(item.toString(), binding.qrCode)
+
         binding.movieTitle.text = item.movieTitle
         binding.ticketCode.text = "Mã đặt vé: ${item.ticketCode}"
-        binding.time.text = "${item.time} - ${item.duration}"
-        binding.date.text = item.date
-        binding.theater.text = item.theater.toString()
-        binding.ticketCount.text = item.seats.size.toString()
-        binding.seats.text = item.seats.toString()
+        binding.time.text = "Thời gian: ${item.time} - ${endShow}"
+        binding.date.text = formatDate
+        binding.theater.text = "Phòng chiếu: ${item.theater.toString()}"
+        binding.seats.text = "Số vé: ${item.seats.size} - Ghế: ${item.seats}"
 
 
         binding.backBtn.setOnClickListener {
             finish()
         }
-        binding.buyTicketBtn.setOnClickListener {
-            val intent = Intent(this, ExportTicketActivity::class.java)
-            intent.putExtra("object", item)
-            startActivity(intent)
-        }
-
-        val radius = 10f
-        val decorView = window.decorView
-        val rootView = decorView.findViewById<ViewGroup>(android.R.id.content)
-        val windowsBackground = decorView.background
-
-        binding.blurView.setupWith(rootView, RenderEffectBlur())
-            .setFrameClearDrawable(windowsBackground)
-            .setBlurRadius(radius)
-        binding.blurView.outlineProvider = ViewOutlineProvider.BACKGROUND
-        binding.blurView.clipToOutline = true
     }
 }

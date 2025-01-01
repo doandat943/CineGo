@@ -10,8 +10,11 @@ import com.joverse.cinego.databinding.ItemDateBinding
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-class DateAdapter(private val timeSlots: List<String>, private val onDateSelected: (String) -> Unit) :
-    RecyclerView.Adapter<DateAdapter.DateViewHolder>() {
+class DateAdapter(
+    private val timeSlots: List<String>,
+    private val onDateSelected: (String) -> Unit
+) : RecyclerView.Adapter<DateAdapter.DateViewHolder>() {
+
     private var selectedPosition = -1
     private var lastSelectedPosition = -1
 

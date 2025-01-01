@@ -8,12 +8,21 @@
         android:layout_height="match_parent"
         android:background="@color/white"
         android:padding="16dp"
-        tools:context=".activity.TestActivity">
+        tools:context=".activity.ExportTicketActivity">
 
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+        <ImageView
+                android:id="@+id/backBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/back_dark"/>
 
         <TextView
                 android:id="@+id/movie_title"
@@ -22,11 +31,11 @@
                 android:text="Ngày Xưa Có Một Chuyện Tình"
                 android:textColor="@color/black"
                 android:textSize="18sp"
-                android:layout_marginTop="4dp"/>
+                android:layout_marginTop="20dp"/>
 
         <!-- Movie Image -->
         <ImageView
-                android:id="@+id/movie_image"
+                android:id="@+id/poster"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:scaleType="centerCrop"
@@ -69,7 +78,7 @@
                     android:layout_marginTop="4dp"/>
 
             <TextView
-                    android:id="@+id/cinema_room"
+                    android:id="@+id/theater"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Phòng chiếu: RAP 2"
@@ -78,7 +87,7 @@
                     android:layout_marginTop="16dp"/>
 
             <TextView
-                    android:id="@+id/seat_number"
+                    android:id="@+id/seats"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Số vé: 02 - Ghế: F12, F11"

@@ -1,39 +1,53 @@
 package com.joverse.cinego.adapter
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
+import com.joverse.cinego.activity.MovieDetailActivity
+import com.joverse.cinego.activity.TicketDetailActivity
 import com.joverse.cinego.databinding.ItemTicketBinding
+import com.joverse.cinego.model.Ticket
 
-data class Ticket(
-    val movieTitle: String,
-    val cinemaName: String,
-    val showtime: String,
-    val moviePosterResId: Int
-)
+class TicketListAdapter(
+    private val tickets: List<Ticket>
+) : RecyclerView.Adapter<TicketListAdapter.TicketViewHolder>() {
 
-class TicketAdapter(
-    private val tickets: List<Ticket>,
-    private val onTicketClick: (Ticket) -> Unit
-) : RecyclerView.Adapter<TicketAdapter.TicketViewHolder>() {
+    private var context: Context? = null
 
     inner class TicketViewHolder(private val binding: ItemTicketBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(ticket: Ticket) {
             binding.movieTitle.text = ticket.movieTitle
-            binding.cinemaName.text = ticket.cinemaName
-            binding.showtime.text = ticket.showtime
-            binding.moviePoster.setImageResource(ticket.moviePosterResId)
+            binding.theater.text = ticket.theater
+            binding.showtime.text = ticket.date + " - " + ticket.time
+            binding.totalAmount.text = ticket.totalAmount.toString()
+
+            val requestOptions = RequestOptions()
+                .transform(CenterCrop(), RoundedCorners(30))
+
+            Glide.with(this.binding.root.context!!)
+                .load(ticket.poster)
+                .apply(requestOptions)
+                .into(binding.moviePoster)
 
             binding.root.setOnClickListener {
-                onTicketClick(ticket)
+                val intent = Intent(context, TicketDetailActivity::class.java)
+                intent.putExtra("object", ticket)
+                context!!.startActivity(intent)
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TicketViewHolder {
+        context = parent.context
         val binding = ItemTicketBinding.inflate(
-            LayoutInflater.from(parent.context),
+            LayoutInflater.from(context),
             parent,
             false
         )

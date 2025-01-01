@@ -13,28 +13,29 @@ import com.bumptech.glide.load.resource.bitmap.GranularRoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.joverse.cinego.adapter.CastListAdapter
 import com.joverse.cinego.adapter.CategoryEachFilmAdapter
-import com.joverse.cinego.model.Film
-import com.joverse.cinego.databinding.ActivityFilmDetailBinding
+import com.joverse.cinego.model.Movie
+import com.joverse.cinego.databinding.ActivityMovieDetailBinding
 import eightbitlab.com.blurview.RenderEffectBlur
 
-class FilmDetailActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityFilmDetailBinding
+class MovieDetailActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMovieDetailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityFilmDetailBinding.inflate(layoutInflater)
+
+        binding = ActivityMovieDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        setVariable()
 
         window.setFlags(
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
         )
-
-        setVariable()
     }
 
     private fun setVariable() {
-        val item: Film = intent.getParcelableExtra("object")!!
+        val item: Movie = intent.getParcelableExtra("object")!!
         val requestOptions =
             RequestOptions().transform(CenterCrop(), GranularRoundedCorners(0f, 0f, 50f, 50f))
 

@@ -16,10 +16,10 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.google.firebase.database.*
 import com.joverse.cinego.activity.IntroActivity
-import com.joverse.cinego.adapter.FilmListAdapter
+import com.joverse.cinego.adapter.MovieListAdapter
 import com.joverse.cinego.adapter.SliderAdapter
 import com.joverse.cinego.databinding.FragmentExploreBinding
-import com.joverse.cinego.model.Film
+import com.joverse.cinego.model.Movie
 import com.joverse.cinego.model.SliderItem
 import kotlin.math.abs
 
@@ -84,13 +84,13 @@ class ExploreFragment : Fragment() {
     private fun initTopMoving() {
         val myRef: DatabaseReference = database.getReference("Items")
         binding.progressBarTopMovies.visibility = View.VISIBLE
-        val items = ArrayList<Film>()
+        val items = ArrayList<Movie>()
 
         myRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     for (issue in snapshot.children) {
-                        items.add(issue.getValue(Film::class.java)!!)
+                        items.add(issue.getValue(Movie::class.java)!!)
                     }
                     if (items.isNotEmpty()) {
                         binding.recyclerViewTopMovies.layoutManager = LinearLayoutManager(
@@ -98,7 +98,7 @@ class ExploreFragment : Fragment() {
                             LinearLayoutManager.HORIZONTAL,
                             false
                         )
-                        binding.recyclerViewTopMovies.adapter = FilmListAdapter(items)
+                        binding.recyclerViewTopMovies.adapter = MovieListAdapter(items)
                     }
                     binding.progressBarTopMovies.visibility = View.GONE
                 }
@@ -113,13 +113,13 @@ class ExploreFragment : Fragment() {
     private fun initUpcomming() {
         val myRef: DatabaseReference = database.getReference("Upcomming")
         binding.progressBarupcomming.visibility = View.VISIBLE
-        val items = ArrayList<Film>()
+        val items = ArrayList<Movie>()
 
         myRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     for (issue in snapshot.children) {
-                        items.add(issue.getValue(Film::class.java)!!)
+                        items.add(issue.getValue(Movie::class.java)!!)
                     }
                     if (items.isNotEmpty()) {
                         binding.recyclerViewUpcomming.layoutManager = LinearLayoutManager(
@@ -127,7 +127,7 @@ class ExploreFragment : Fragment() {
                             LinearLayoutManager.HORIZONTAL,
                             false
                         )
-                        binding.recyclerViewUpcomming.adapter = FilmListAdapter(items)
+                        binding.recyclerViewUpcomming.adapter = MovieListAdapter(items)
                     }
                     binding.progressBarupcomming.visibility = View.GONE
                 }

@@ -2,6 +2,7 @@ package com.joverse.cinego.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -10,7 +11,6 @@ import com.google.firebase.database.FirebaseDatabase
 import com.joverse.cinego.databinding.ActivitySignInBinding
 
 class SignInActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivitySignInBinding
     private lateinit var database: FirebaseDatabase
 
@@ -21,6 +21,11 @@ class SignInActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initUI()
+
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+        )
     }
 
     fun initUI() {

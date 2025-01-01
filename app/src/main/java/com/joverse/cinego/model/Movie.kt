@@ -3,16 +3,16 @@ package com.joverse.cinego.model
 import android.os.Parcel
 import android.os.Parcelable
 
-data class Film(
+data class Movie(
     var title: String? = null,
     var description: String? = null,
     var poster: String? = null,
-    var duration: String? = null,
+    var duration: Int = 0,
     var trailer: String? = null,
     var imdb: Int = 0,
     var year: Int = 0,
     var ageRating: String? = null,
-    var price: Double = 0.0,
+    var price: Int = 0,
     var genres: ArrayList<String> = ArrayList(),
     var casts: ArrayList<Cast> = ArrayList(),
     var showDates: ArrayList<ShowDate> = ArrayList()
@@ -21,12 +21,12 @@ data class Film(
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
-        parcel.readString(),
+        parcel.readInt(),
         parcel.readString(),
         parcel.readInt(),
         parcel.readInt(),
         parcel.readString(),
-        parcel.readDouble(),
+        parcel.readInt(),
         parcel.createStringArrayList() ?: ArrayList(),
         parcel.createTypedArrayList(Cast.CREATOR) ?: ArrayList(),
         parcel.createTypedArrayList(ShowDate.CREATOR) ?: ArrayList()
@@ -36,12 +36,12 @@ data class Film(
         parcel.writeString(title)
         parcel.writeString(description)
         parcel.writeString(poster)
-        parcel.writeString(duration)
+        parcel.writeInt(duration)
         parcel.writeString(trailer)
         parcel.writeInt(imdb)
         parcel.writeInt(year)
         parcel.writeString(ageRating)
-        parcel.writeDouble(price)
+        parcel.writeInt(price)
         parcel.writeStringList(genres)
         parcel.writeTypedList(casts)
         parcel.writeTypedList(showDates)
@@ -51,12 +51,12 @@ data class Film(
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<Film> {
-        override fun createFromParcel(parcel: Parcel): Film {
-            return Film(parcel)
+    companion object CREATOR : Parcelable.Creator<Movie> {
+        override fun createFromParcel(parcel: Parcel): Movie {
+            return Movie(parcel)
         }
 
-        override fun newArray(size: Int): Array<Film?> {
+        override fun newArray(size: Int): Array<Movie?> {
             return arrayOfNulls(size)
         }
     }

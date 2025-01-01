@@ -7,8 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.joverse.cinego.R
 import com.joverse.cinego.databinding.ItemTimeBinding
 
-class TimeAdapter(private val timeSlots: List<String>, private val onTimeSelected: (String) -> Unit) :
-    RecyclerView.Adapter<TimeAdapter.TimeViewHolder>() {
+class TimeAdapter(
+    private val timeSlots: List<String>,
+    private val onTimeSelected: (String) -> Unit
+) : RecyclerView.Adapter<TimeAdapter.TimeViewHolder>() {
+
     private var selectedPosition = -1
     private var lastSelectedPosition = -1
 

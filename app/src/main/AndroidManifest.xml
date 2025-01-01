@@ -13,7 +13,7 @@
             android:theme="@style/Theme.Project2002"
             tools:targetApi="31">
         <activity
-                android:name=".activity.TestActivity"
+                android:name=".activity.ExportTicketActivity"
                 android:exported="false"/>
         <activity
                 android:name=".activity.TicketDetailActivity"
@@ -28,7 +28,7 @@
                 android:name=".activity.SeatListActivity"
                 android:exported="false"/>
         <activity
-                android:name=".activity.FilmDetailActivity"
+                android:name=".activity.MovieDetailActivity"
                 android:exported="false"/>
         <activity
                 android:name=".activity.IntroActivity"
