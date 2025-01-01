@@ -22,9 +22,6 @@ class IntroActivity : AppCompatActivity() {
             if (user == null) {
                 startActivity(Intent(this, SignInActivity::class.java))
             } else {
-                val userId = user.uid;
-
-                Toast.makeText(this, userId, Toast.LENGTH_LONG).show()
                 startActivity(Intent(this, MainActivity::class.java))
             }
         }

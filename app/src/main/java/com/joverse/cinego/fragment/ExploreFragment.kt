@@ -20,7 +20,7 @@ import com.joverse.cinego.adapter.FilmListAdapter
 import com.joverse.cinego.adapter.SliderAdapter
 import com.joverse.cinego.databinding.FragmentExploreBinding
 import com.joverse.cinego.model.Film
-import com.joverse.cinego.model.SliderItems
+import com.joverse.cinego.model.SliderItem
 import kotlin.math.abs
 
 class ExploreFragment : Fragment() {
@@ -63,9 +63,9 @@ class ExploreFragment : Fragment() {
 
         myRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                val lists = mutableListOf<SliderItems>()
+                val lists = mutableListOf<SliderItem>()
                 for (childSnapshot in snapshot.children) {
-                    val list = childSnapshot.getValue(SliderItems::class.java)
+                    val list = childSnapshot.getValue(SliderItem::class.java)
                     if (list != null) {
                         lists.add(list)
                     }
@@ -154,7 +154,7 @@ class ExploreFragment : Fragment() {
         sliderHandler.postDelayed(sliderRunnable, 2000)
     }
 
-    private fun banners(lists: MutableList<SliderItems>) {
+    private fun banners(lists: MutableList<SliderItem>) {
         binding.viewPager2.adapter = SliderAdapter(lists, binding.viewPager2)
         binding.viewPager2.clipToPadding = false
         binding.viewPager2.clipChildren = false

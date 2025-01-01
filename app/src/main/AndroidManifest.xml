@@ -16,7 +16,7 @@
                 android:name=".activity.TestActivity"
                 android:exported="false"/>
         <activity
-                android:name=".activity.CartDetailActivity"
+                android:name=".activity.TicketDetailActivity"
                 android:exported="false"/>
         <activity
                 android:name=".activity.SignUpActivity"

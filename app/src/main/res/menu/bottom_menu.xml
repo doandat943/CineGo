@@ -10,13 +10,13 @@
     <item
         android:id="@+id/favorites"
         android:icon="@drawable/btn_2"
-        android:title="Vé"
+        android:title="Yêu thích"
         app:cnb_backgroundColor="@color/orange"
         app:cnb_iconColor="@color/white" />
     <item
-        android:id="@+id/cart"
+        android:id="@+id/ticket"
         android:icon="@drawable/btn_3"
-        android:title="Giỏ hàng"
+        android:title="Vé"
         app:cnb_backgroundColor="@color/orange"
         app:cnb_iconColor="@color/white" />
     <item

@@ -6,23 +6,23 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.joverse.cinego.model.Seat
 import com.joverse.cinego.R
-import com.joverse.cinego.databinding.SeatItemBinding
+import com.joverse.cinego.databinding.ItemSeatBinding
 
 class SeatListAdapter(
     private val seatList: List<Seat>,
     private val context: Context,
     private val selectedSeat: SelectedSeat
-) : RecyclerView.Adapter<SeatListAdapter.SeatViewholder>() {
+) : RecyclerView.Adapter<SeatListAdapter.SeatViewHolder>() {
     private val selectedSeatName = ArrayList<String>()
 
-    class SeatViewholder(val binding: SeatItemBinding) : RecyclerView.ViewHolder(binding.root)
+    class SeatViewHolder(val binding: ItemSeatBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): SeatViewholder {
-        return SeatViewholder(
-            SeatItemBinding.inflate(
+    ): SeatViewHolder {
+        return SeatViewHolder(
+            ItemSeatBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -30,7 +30,7 @@ class SeatListAdapter(
         )
     }
 
-    override fun onBindViewHolder(holder: SeatViewholder, position: Int) {
+    override fun onBindViewHolder(holder: SeatViewHolder, position: Int) {
         val seat = seatList[position]
         holder.binding.seat.text = seat.name
 

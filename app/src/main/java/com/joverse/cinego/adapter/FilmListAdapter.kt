@@ -11,12 +11,12 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.joverse.cinego.activity.FilmDetailActivity
 import com.joverse.cinego.model.Film
-import com.joverse.cinego.databinding.ViewholderFilmBinding
+import com.joverse.cinego.databinding.ItemFilmBinding
 
-class FilmListAdapter(private val items: ArrayList<Film>) : RecyclerView.Adapter<FilmListAdapter.Viewholder>() {
+class FilmListAdapter(private val items: ArrayList<Film>) : RecyclerView.Adapter<FilmListAdapter.FilmViewHolder>() {
     private var context: Context? = null
 
-    inner class Viewholder(private val binding: ViewholderFilmBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class FilmViewHolder(private val binding: ItemFilmBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(film: Film) {
             binding.nameTxt.text = film.title
@@ -36,13 +36,13 @@ class FilmListAdapter(private val items: ArrayList<Film>) : RecyclerView.Adapter
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilmListAdapter.Viewholder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilmListAdapter.FilmViewHolder {
         context = parent.context
-        val binding = ViewholderFilmBinding.inflate(LayoutInflater.from(context), parent, false)
-        return Viewholder(binding)
+        val binding = ItemFilmBinding.inflate(LayoutInflater.from(context), parent, false)
+        return FilmViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: FilmListAdapter.Viewholder, position: Int) {
+    override fun onBindViewHolder(holder: FilmListAdapter.FilmViewHolder, position: Int) {
         holder.bind(items[position])
     }
 

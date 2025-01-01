@@ -1,5 +1,5 @@
 package com.joverse.cinego.model
 
-data class SliderItems(
+data class SliderItem(
     val image: String? = null
 )

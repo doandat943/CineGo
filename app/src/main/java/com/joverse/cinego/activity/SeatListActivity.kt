@@ -53,7 +53,6 @@ class SeatListActivity : AppCompatActivity() {
 
         val dates = generateDates()
         if (dates.isNotEmpty()) {
-            // Gọi onDateSelected() với ngày đầu tiên
             onDateSelected(dates.first())
         }
 

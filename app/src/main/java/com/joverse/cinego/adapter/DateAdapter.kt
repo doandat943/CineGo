@@ -3,7 +3,6 @@ package com.joverse.cinego.adapter
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.joverse.cinego.R
@@ -12,7 +11,7 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
 class DateAdapter(private val timeSlots: List<String>, private val onDateSelected: (String) -> Unit) :
-    RecyclerView.Adapter<DateAdapter.TimeViewholder>() {
+    RecyclerView.Adapter<DateAdapter.DateViewHolder>() {
     private var selectedPosition = -1
     private var lastSelectedPosition = -1
 
@@ -22,7 +21,7 @@ class DateAdapter(private val timeSlots: List<String>, private val onDateSelecte
         }
     }
 
-    inner class TimeViewholder(private val binding: ItemDateBinding) :
+    inner class DateViewHolder(private val binding: ItemDateBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(date: String) {
@@ -61,8 +60,8 @@ class DateAdapter(private val timeSlots: List<String>, private val onDateSelecte
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DateAdapter.TimeViewholder {
-        return TimeViewholder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DateAdapter.DateViewHolder {
+        return DateViewHolder(
             ItemDateBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
@@ -71,7 +70,7 @@ class DateAdapter(private val timeSlots: List<String>, private val onDateSelecte
         )
     }
 
-    override fun onBindViewHolder(holder: DateAdapter.TimeViewholder, position: Int) {
+    override fun onBindViewHolder(holder: DateAdapter.DateViewHolder, position: Int) {
         holder.bind(timeSlots[position])
     }
 

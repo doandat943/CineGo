@@ -9,11 +9,11 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
-import com.joverse.cinego.model.SliderItems
-import com.joverse.cinego.databinding.ViewholderSliderBinding
+import com.joverse.cinego.model.SliderItem
+import com.joverse.cinego.databinding.ItemSliderBinding
 
 class SliderAdapter(
-    private var sliderItems: MutableList<SliderItems>, private val viewPager2: ViewPager2
+    private var sliderItems: MutableList<SliderItem>, private val viewPager2: ViewPager2
 ) : RecyclerView.Adapter<SliderAdapter.SliderViewHolder>() {
     private var context: Context? = null
     private val runnable = Runnable {
@@ -21,10 +21,10 @@ class SliderAdapter(
         notifyDataSetChanged()
     }
 
-    inner class SliderViewHolder(private val binding: ViewholderSliderBinding) :
+    inner class SliderViewHolder(private val binding: ItemSliderBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(sliderItem: SliderItems) {
+        fun bind(sliderItem: SliderItem) {
             val requestOptions= RequestOptions().transform(CenterCrop(), RoundedCorners(60))
             context?.let {
                 Glide.with(it)
@@ -40,7 +40,7 @@ class SliderAdapter(
         viewType: Int
     ): SliderAdapter.SliderViewHolder {
         context = parent.context
-        val binding = ViewholderSliderBinding.inflate(LayoutInflater.from(context), parent, false)
+        val binding = ItemSliderBinding.inflate(LayoutInflater.from(context), parent, false)
         return SliderViewHolder(binding)
     }
 

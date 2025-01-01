@@ -6,13 +6,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.joverse.cinego.model.Cast
-import com.joverse.cinego.databinding.ViewholderCastBinding
+import com.joverse.cinego.databinding.ItemCastBinding
 
 class CastListAdapter(private val cast: ArrayList<Cast>) :
-    RecyclerView.Adapter<CastListAdapter.Viewholder>() {
+    RecyclerView.Adapter<CastListAdapter.CastViewHolder>() {
     private var context: Context? = null
 
-    inner class Viewholder(private val binding: ViewholderCastBinding) :
+    inner class CastViewHolder(private val binding: ItemCastBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(cast: Cast) {
             context?.let {
@@ -24,14 +24,14 @@ class CastListAdapter(private val cast: ArrayList<Cast>) :
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CastListAdapter.Viewholder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CastListAdapter.CastViewHolder {
         context=parent.context
         val binding =
-            ViewholderCastBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return Viewholder(binding)
+            ItemCastBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return CastViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: CastListAdapter.Viewholder, position: Int) {
+    override fun onBindViewHolder(holder: CastListAdapter.CastViewHolder, position: Int) {
         holder.bind(cast[position])
     }
 

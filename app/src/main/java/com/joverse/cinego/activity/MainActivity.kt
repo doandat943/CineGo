@@ -50,10 +50,10 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.favorites -> {
-                    startActivity(Intent(this, CartDetailActivity::class.java))
+                    startActivity(Intent(this, TicketDetailActivity::class.java))
                 }
 
-                R.id.cart -> {
+                R.id.ticket -> {
                     loadFragment(ExploreFragment())
                 }
 
