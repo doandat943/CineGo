@@ -10,7 +10,7 @@ data class Movie(
     var duration: Int = 0,
     var trailer: String? = null,
     var imdb: Int = 0,
-    var year: Int = 0,
+    var premiere: String? = null,
     var ageRating: String? = null,
     var price: Int = 0,
     var genres: ArrayList<String> = ArrayList(),
@@ -24,7 +24,7 @@ data class Movie(
         parcel.readInt(),
         parcel.readString(),
         parcel.readInt(),
-        parcel.readInt(),
+        parcel.readString(),
         parcel.readString(),
         parcel.readInt(),
         parcel.createStringArrayList() ?: ArrayList(),
@@ -39,7 +39,7 @@ data class Movie(
         parcel.writeInt(duration)
         parcel.writeString(trailer)
         parcel.writeInt(imdb)
-        parcel.writeInt(year)
+        parcel.writeString(premiere)
         parcel.writeString(ageRating)
         parcel.writeInt(price)
         parcel.writeStringList(genres)

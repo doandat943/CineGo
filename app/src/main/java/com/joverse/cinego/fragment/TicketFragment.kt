@@ -13,7 +13,6 @@ import com.joverse.cinego.databinding.FragmentTicketBinding
 import com.joverse.cinego.model.Ticket
 
 class TicketFragment : Fragment() {
-
     private lateinit var binding: FragmentTicketBinding
     private lateinit var database: FirebaseDatabase
 
@@ -44,7 +43,7 @@ class TicketFragment : Fragment() {
                         if (items.isNotEmpty()) {
                             binding.ticketsRecyclerView.layoutManager = LinearLayoutManager(
                                 this@TicketFragment.requireContext(),
-                                LinearLayoutManager.HORIZONTAL,
+                                LinearLayoutManager.VERTICAL,
                                 false
                             )
                             binding.ticketsRecyclerView.adapter = TicketListAdapter(items)

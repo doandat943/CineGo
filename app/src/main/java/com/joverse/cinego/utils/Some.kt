@@ -21,11 +21,10 @@ fun addDurationToTime(time: String?, duration: Int): String {
 }
 
 fun formatDate(dateStr: String?): String {
-    val inputFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
-    val date = LocalDate.parse(dateStr, inputFormatter)
+    val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+    val date = LocalDate.parse(dateStr, formatter)
     val dayOfWeek = date.dayOfWeek.getDisplayName(TextStyle.FULL, Locale.getDefault())
-    val outputFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
-    return "$dayOfWeek, ${date.format(outputFormatter)}"
+    return "$dayOfWeek, $date"
 }
 
 fun generateQRCode(data: String, imageView: ImageView) {

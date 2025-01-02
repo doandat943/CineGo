@@ -21,10 +21,11 @@ import com.joverse.cinego.adapter.SliderAdapter
 import com.joverse.cinego.databinding.FragmentExploreBinding
 import com.joverse.cinego.model.Movie
 import com.joverse.cinego.model.SliderItem
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import kotlin.math.abs
 
 class ExploreFragment : Fragment() {
-
     private lateinit var binding: FragmentExploreBinding
     private lateinit var database: FirebaseDatabase
 
@@ -37,8 +38,7 @@ class ExploreFragment : Fragment() {
 
         initUI()
         initBanner()
-        initTopMoving()
-        initUpcomming()
+        initMovieList()
 
         return binding.getRoot()
     }
@@ -80,54 +80,53 @@ class ExploreFragment : Fragment() {
         })
     }
 
-
-    private fun initTopMoving() {
-        val myRef: DatabaseReference = database.getReference("Items")
-        binding.progressBarTopMovies.visibility = View.VISIBLE
-        val items = ArrayList<Movie>()
+    private fun initMovieList() {
+        val myRef: DatabaseReference = database.getReference("Movies")
+        binding.progressBarupcomming.visibility = View.VISIBLE
+        val showingList = ArrayList<Movie>()
+        val upcomingList = ArrayList<Movie>()
 
         myRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
+                    val current = LocalDate.now()
+                    val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+                    val today = current.format(formatter)
+
                     for (issue in snapshot.children) {
-                        items.add(issue.getValue(Movie::class.java)!!)
+                        val movie = issue.getValue(Movie::class.java)
+                        movie?.let {
+                            try {
+                                if (it.premiere != null) {
+                                    if (it.premiere!! <= today) {
+                                        showingList.add(it)
+                                    } else {
+                                        upcomingList.add(it)
+                                    }
+                                }
+                            } catch (e: Exception) {
+                                e.printStackTrace()
+                            }
+                        }
                     }
-                    if (items.isNotEmpty()) {
+
+                    if (showingList.isNotEmpty()) {
                         binding.recyclerViewTopMovies.layoutManager = LinearLayoutManager(
                             this@ExploreFragment.requireContext(),
                             LinearLayoutManager.HORIZONTAL,
                             false
                         )
-                        binding.recyclerViewTopMovies.adapter = MovieListAdapter(items)
+                        binding.recyclerViewTopMovies.adapter = MovieListAdapter(showingList)
                     }
                     binding.progressBarTopMovies.visibility = View.GONE
-                }
-            }
 
-            override fun onCancelled(error: DatabaseError) {
-            }
-
-        })
-    }
-
-    private fun initUpcomming() {
-        val myRef: DatabaseReference = database.getReference("Upcomming")
-        binding.progressBarupcomming.visibility = View.VISIBLE
-        val items = ArrayList<Movie>()
-
-        myRef.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()) {
-                    for (issue in snapshot.children) {
-                        items.add(issue.getValue(Movie::class.java)!!)
-                    }
-                    if (items.isNotEmpty()) {
+                    if (upcomingList.isNotEmpty()) {
                         binding.recyclerViewUpcomming.layoutManager = LinearLayoutManager(
                             this@ExploreFragment.requireContext(),
                             LinearLayoutManager.HORIZONTAL,
                             false
                         )
-                        binding.recyclerViewUpcomming.adapter = MovieListAdapter(items)
+                        binding.recyclerViewUpcomming.adapter = MovieListAdapter(upcomingList)
                     }
                     binding.progressBarupcomming.visibility = View.GONE
                 }
@@ -135,7 +134,6 @@ class ExploreFragment : Fragment() {
 
             override fun onCancelled(error: DatabaseError) {
             }
-
         })
     }
 

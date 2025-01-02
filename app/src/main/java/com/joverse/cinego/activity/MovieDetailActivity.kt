@@ -46,7 +46,7 @@ class MovieDetailActivity : AppCompatActivity() {
 
         binding.titleTxt.text = item.title
         binding.imdbTxt.text = "IMDB ${item.imdb}"
-        binding.movieTimeTxt.text = "${item.year} - ${item.duration}"
+        binding.movieTimeTxt.text = "${item.premiere} - ${item.duration}"
         binding.movieSummeryTxt.text = item.description
 
         binding.backBtn.setOnClickListener {
@@ -55,6 +55,12 @@ class MovieDetailActivity : AppCompatActivity() {
         binding.buyTicketBtn.setOnClickListener {
             val intent = Intent(this, SeatListActivity::class.java)
             intent.putExtra("object", item)
+            startActivity(intent)
+        }
+
+        binding.imageView6.setOnClickListener {
+            val intent = Intent(this, TrailerActivity::class.java)
+            //intent.putExtra("object", item.trailer)
             startActivity(intent)
         }
 

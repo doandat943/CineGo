@@ -53,5 +53,6 @@ dependencies {
     implementation(libs.firebase.auth)
     implementation(libs.firebase.database)
     implementation(libs.zxing)
-
+    implementation(libs.exoplayer)
+    implementation(libs.androidx.media3.exoplayer)
 }

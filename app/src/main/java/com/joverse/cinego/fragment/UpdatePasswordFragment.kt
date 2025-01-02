@@ -13,7 +13,6 @@ import com.google.firebase.auth.auth
 import com.joverse.cinego.databinding.FragmentUpdatePasswordBinding
 
 class UpdatePasswordFragment : Fragment() {
-
     private lateinit var binding: FragmentUpdatePasswordBinding
 
     override fun onCreateView(
